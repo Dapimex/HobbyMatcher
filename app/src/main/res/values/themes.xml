@@ -16,21 +16,8 @@
         <item name="colorBackgroundFloating">@color/primaryLightColor</item>
         <item name="colorOnBackground">?attr/colorOnPrimary</item>
 
-        <item name="textAppearanceButton">@style/TextAppearance.HobbyMatcher.Button</item>
         <item name="shapeAppearanceSmallComponent">
             @style/ShapeAppearance.HobbyMatcher.SmallComponent
         </item>
-    </style>
-
-    <style name="TextAppearance.HobbyMatcher.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="background">?attr/colorPrimary</item>
-        <item name="android:textColor">?attr/colorOnSecondary</item>
-    </style>
-
-    <style name="ShapeAppearance.HobbyMatcher.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">cut</item>
-        <item name="cornerSize">4dp</item>
-        <item name="cornerSizeBottomLeft">0dp</item>
-        <item name="cornerSizeTopRight">0dp</item>
     </style>
 </resources>
