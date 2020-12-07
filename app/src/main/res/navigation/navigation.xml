@@ -3,28 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation.xml"
-    app:startDestination="@id/menuFragment">
+    app:startDestination="@id/menu_item_home">
 
     <fragment
-        android:id="@+id/menuFragment"
+        android:id="@+id/menu_item_home"
         android:name="com.madness.hobbymatcher.Menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
-        <action
-            android:id="@+id/action_menuFragment_to_addActivityFragment"
-            app:destination="@id/addActivityFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addActivityFragment"
+        android:id="@+id/menu_item_add_activity"
         android:name="com.madness.hobbymatcher.AddActivity.AddActivityFragment"
         android:label="fragment_add_activity"
         tools:layout="@layout/fragment_add_activity" >
-        <action
-            android:id="@+id/action_addActivityFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/menu_item_profile"
         android:name="com.madness.hobbymatcher.Profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
