@@ -1,0 +1,7 @@
+<resources>
+    <string name="text_hi_there">Hi there!</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="button_log_in">Log In</string>
+    <string name="err_edit_empty">Should not be empty</string>
+</resources>
