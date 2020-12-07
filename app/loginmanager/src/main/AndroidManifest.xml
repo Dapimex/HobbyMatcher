@@ -3,6 +3,7 @@
     package="com.madness.hobbymatcher.loginmanager">
 
     <application>
+        <activity android:name=".RegistrationActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.HobbyMatcher" />

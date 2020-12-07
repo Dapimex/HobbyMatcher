@@ -1,10 +1,11 @@
 package com.madness.hobbymatcher.loginmanager
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.View
-import android.widget.EditText
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.madness.hobbymatcher.loginmanager.Utils.Companion.errorFieldIfEmpty
+import com.madness.hobbymatcher.loginmanager.Utils.Companion.trimField
 import com.madness.hobbymatcher.loginmanager.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -18,23 +19,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(layout.root)
     }
 
-    @Suppress("UNUSED_PARAMETER")
-    fun onLoginButtonClick(view: View) {
+    fun onLoginButtonClick(button: View) {
+        button as Button
         with(layout) {
             trimField(editUsername)
             trimField(editPassword)
-            errorFieldIfEmpty(editUsername)
-            errorFieldIfEmpty(editPassword)
-        }
-    }
-
-    private fun trimField(edit: EditText) {
-        edit.text = edit.text.trim() as Editable
-    }
-
-    private fun errorFieldIfEmpty(edit: EditText) {
-        if (edit.text.isEmpty()) {
-            edit.error = getString(R.string.err_edit_empty)
+            errorFieldIfEmpty(editUsername, getString(R.string.err_edit_empty))
+            errorFieldIfEmpty(editPassword, getString(R.string.err_edit_empty))
         }
     }
 
