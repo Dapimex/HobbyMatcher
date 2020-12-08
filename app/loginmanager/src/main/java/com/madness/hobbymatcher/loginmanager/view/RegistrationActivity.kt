@@ -1,13 +1,14 @@
-package com.madness.hobbymatcher.loginmanager
+package com.madness.hobbymatcher.loginmanager.view
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.madness.hobbymatcher.loginmanager.Utils.Companion.errorFieldIfEmpty
-import com.madness.hobbymatcher.loginmanager.Utils.Companion.trimField
+import com.madness.hobbymatcher.loginmanager.R
 import com.madness.hobbymatcher.loginmanager.databinding.ActivityRegistrationBinding
+import com.madness.hobbymatcher.loginmanager.misc.errorFieldIfEmpty
+import com.madness.hobbymatcher.loginmanager.misc.trimField
 
 class RegistrationActivity : AppCompatActivity() {
 
