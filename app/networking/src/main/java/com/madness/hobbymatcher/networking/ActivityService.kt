@@ -1,7 +1,6 @@
 package com.madness.hobbymatcher.networking
 
-import com.madness.hobbymatcher.networking.request.ActivityCreateRequest
-import com.madness.hobbymatcher.networking.response.ActivityResponse
+import com.madness.hobbymatcher.networking.response.Activity
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -11,20 +10,20 @@ interface ActivityService {
     fun getVisibleActivities(
         @Query("id") id: Int,
         @Query("username") username: String
-    ): Call<Array<ActivityResponse>>
+    ): Call<Array<Activity>>
 
     @POST("activities")
     fun createActivity(
-        @Query("createRequest") createRequest: ActivityCreateRequest,
+        @Query("createRequest") createRequest: Activity,
         @Query("id") id: Int,
         @Query("username") username: String
-    ): Call<ActivityResponse>
+    ): Call<Activity>
 
     @GET("activities/{id{")
     fun getActivity(
         @Path("id") id: Int,
         @Query("username") username: String
-    ): Call<ActivityResponse>
+    ): Call<Activity>
 
     @DELETE("activities/{id}")
     fun deleteActivity(
@@ -39,8 +38,8 @@ interface ActivityService {
     ): Call<ResponseBody>
 
     @GET("activities/created")
-    fun getMyActivities(): Call<Array<ActivityResponse>>
+    fun getMyActivities(): Call<Array<Activity>>
 
     @GET("activities/joined")
-    fun getJoinedActivities(): Call<Array<ActivityResponse>>
+    fun getJoinedActivities(): Call<Array<Activity>>
 }
