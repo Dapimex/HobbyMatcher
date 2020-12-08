@@ -2,7 +2,9 @@ package com.madness.hobbymatcher.networking
 
 import com.madness.hobbymatcher.networking.response.SignInResponse
 import com.madness.hobbymatcher.networking.response.SignUpResponse
+import com.madness.hobbymatcher.networking.response.WhoAmIResponse
 import retrofit2.Call
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -19,5 +21,9 @@ interface AuthService {
         @Query("password") password: String
     ): Call<SignUpResponse>
 
-    // TODO whoAmI
+    @GET("whoami")
+    fun whoAmI(
+        @Query("id") id: Int,
+        @Query("username") username: String
+    ): Call<WhoAmIResponse>
 }
