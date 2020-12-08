@@ -1,5 +1,6 @@
 package com.madness.hobbymatcher.networking
 
+import com.madness.hobbymatcher.networking.request.ActivityCreateRequest
 import com.madness.hobbymatcher.networking.response.ActivityResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -12,7 +13,12 @@ interface ActivityService {
         @Query("username") username: String
     ): Call<Array<ActivityResponse>>
 
-    // TODO createActivity
+    @POST("activities")
+    fun createActivity(
+        @Query("createRequest") createRequest: ActivityCreateRequest,
+        @Query("id") id: Int,
+        @Query("username") username: String
+    ): Call<ActivityResponse>
 
     @GET("activities/{id{")
     fun getActivity(
