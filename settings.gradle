@@ -1,2 +1,4 @@
+include ':app:networking'
+include ':app:loginmanager'
 include ':app'
 rootProject.name = "Hobby Matcher"

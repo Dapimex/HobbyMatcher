@@ -8,6 +8,10 @@
         <item name="cornerSizeTopRight">0dp</item>
     </style>
 
+    <style name="AccentButton" parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.HobbyMatcher.AccentButton</item>
+    </style>
+
     <style name="ThemeOverlay.HobbyMatcher.AccentButton" parent="">
         <item name="colorPrimary">@color/secondaryColor</item>
         <item name="colorOnPrimary">@color/secondaryTextColor</item>

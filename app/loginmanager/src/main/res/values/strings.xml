@@ -1,0 +1,11 @@
+<resources>
+    <string name="text_hi_there">Hi there!</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="button_log_in">Log In</string>
+    <string name="err_edit_empty">Should not be empty</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="hint_repeat_password">Repeat password</string>
+    <string name="button_register">Register</string>
+    <string name="err_passwords_not_same">Passwords must be the same</string>
+</resources>
