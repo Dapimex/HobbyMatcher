@@ -45,6 +45,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
 
 
+    //Network
+    implementation "com.squareup.okhttp3:okhttp:4.9.0" // HTTP Client
+    implementation "com.google.code.gson:gson:2.8.6" // Json Parser
+
+    // Retrofit support library which allows to work with Rest API
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    // Support for connection parser to retrofit
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
     // Image loader
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
