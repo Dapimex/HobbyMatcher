@@ -1,7 +1,6 @@
 package com.madness.hobbymatcher.networking
 
-import com.madness.hobbymatcher.networking.request.InvitationCreateRequest
-import com.madness.hobbymatcher.networking.response.InvitationResponse
+import com.madness.hobbymatcher.networking.response.Invitation
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET
@@ -14,7 +13,7 @@ interface InvitationService {
     fun getMyInvitations(
         @Query("id") id: Int,
         @Query("username") username: String
-    ): Call<InvitationResponse>
+    ): Call<Invitation>
 
     @POST("invitations/{id}/accept")
     fun acceptInvitation(
@@ -30,7 +29,7 @@ interface InvitationService {
 
     @POST("invitations/create")
     fun createInvitation(
-        @Query("createRequest") createRequest: InvitationCreateRequest,
+        @Query("createRequest") createRequest: Invitation,
         @Query("id") id: Int,
         @Query("username") username: String
     )
