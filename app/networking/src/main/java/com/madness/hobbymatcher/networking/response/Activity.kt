@@ -8,6 +8,7 @@ data class Activity(
     @SerializedName("description") val description: String? = "",
     @SerializedName("start_time") val startTime: String? = "",
     @SerializedName("duration") val duration: String? = "",
+    @SerializedName("location") val location: String? = "",
     @SerializedName("is_public") val isPublic: Boolean? = null,
     @SerializedName("type") val type: String? = "",
     @SerializedName("participants") val participants: List<User>? = emptyList(),
