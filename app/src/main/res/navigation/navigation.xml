@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/menu_item_home"
-        android:name="com.madness.hobbymatcher.Menu.MenuFragment"
+        android:name="com.madness.hobbymatcher.Home.HomeFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" >
+        tools:layout="@layout/fragment_home" >
     </fragment>
     <fragment
         android:id="@+id/menu_item_add_activity"

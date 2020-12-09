@@ -5,13 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.madness.hobbymatcher.Menu.InviteActivity
+import com.madness.hobbymatcher.Home.InviteActivity
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.networking.response.Activity
 import com.madness.hobbymatcher.networking.response.Invitation
 
-class InviteActivityAdapter(private val activities: List<InviteActivity>)
+class InviteActivityAdapter
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val activities: MutableList<InviteActivity> = mutableListOf()
 
     private val ITEM_VIEW_TYPE_ACTIVITY = 0
     private val ITEM_VIEW_TYPE_INVITE = 1
@@ -75,6 +77,14 @@ class InviteActivityAdapter(private val activities: List<InviteActivity>)
             is InviteActivity.InviteType -> (holder as InviteViewHolder).bind(item.invite)
             is InviteActivity.ActivityType -> (holder as ActivityViewHolder).bind(item.activity)
         }
+    }
+
+    fun addActivities(activities: List<InviteActivity>) {
+        this.activities.addAll(activities)
+    }
+
+    fun clearActivities() {
+        this.activities.clear()
     }
 }
 
