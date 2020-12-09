@@ -43,4 +43,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    implementation 'androidx.security:security-crypto:1.1.0-alpha03'
+
+    implementation project(':app:networking')
 }
