@@ -60,7 +60,7 @@ dependencies {
     // Support for connection parser to retrofit
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-//    implementation project(':app:loginmanager')
+    implementation project(':app:loginmanager')
     implementation project(':app:networking')
 
     // DI
