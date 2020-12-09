@@ -28,11 +28,22 @@ class CredentialsStore(context: Context) {
     var token: String
         get() = preferences.getString(TOKEN_KEY, "").orEmpty()
         set(value) = with(preferences.edit()) {
-            putString(TOKEN_KEY, value)
-            apply()
+            if (value.isNotEmpty()) {
+                putString(TOKEN_KEY, value)
+                apply()
+            } else {
+                eraseToken()
+            }
         }
 
     val hasToken: Boolean
         get() = preferences.contains(TOKEN_KEY)
+
+    fun eraseToken() {
+        with(preferences.edit()) {
+            remove(TOKEN_KEY)
+            apply()
+        }
+    }
 
 }
