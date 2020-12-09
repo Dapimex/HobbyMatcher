@@ -20,13 +20,13 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', 'BASE_URL', '\"hobby-matcher.herokuapp.com/api/v1/\"'
+            buildConfigField 'String', 'BASE_URL', '\"https://hobby-matcher.herokuapp.com/api/v1/\"'
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            buildConfigField 'String', 'BASE_URL', '\"hobby-matcher.herokuapp.com/api/v1/\"'
+            buildConfigField 'String', 'BASE_URL', '\"https://hobby-matcher.herokuapp.com/api/v1/\"'
         }
     }
     compileOptions {

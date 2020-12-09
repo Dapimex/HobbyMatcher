@@ -17,10 +17,10 @@ class InviteActivityAdapter(private val activities: List<InviteActivity>)
     private val ITEM_VIEW_TYPE_INVITE = 1
 
     class ActivityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
-        val descriptionTextView: TextView = view.findViewById(R.id.activityDescriptionListItemTextView)
-        val startTimeTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
-        val locationTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
+        private val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
+        private val descriptionTextView: TextView = view.findViewById(R.id.activityDescriptionListItemTextView)
+        private val startTimeTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
+        private val locationTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
 
         fun bind(activity: Activity) {
             nameTextView.text = activity.name
