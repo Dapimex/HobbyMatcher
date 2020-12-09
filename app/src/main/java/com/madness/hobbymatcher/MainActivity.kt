@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        (application as HobbyMatcherApplication).appComponent.inject(this)
         bottom_navigation.setupWithNavController(Navigation.findNavController(this, R.id.navHostFragment))
         bottom_navigation.setOnNavigationItemSelectedListener {
                 item ->
