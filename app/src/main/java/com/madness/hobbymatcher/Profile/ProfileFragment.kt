@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.madness.hobbymatcher.R
+import com.madness.hobbymatcher.networking.ActivityService
 
 class ProfileFragment : Fragment() {
 

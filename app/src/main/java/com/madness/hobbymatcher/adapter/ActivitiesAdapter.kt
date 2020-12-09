@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.madness.hobbymatcher.R
-import com.madness.hobbymatcher.data.Activity
+import com.madness.hobbymatcher.networking.response.Activity
 
 class ActivitiesAdapter(private val activities: List<Activity>)
     : RecyclerView.Adapter<ActivitiesAdapter.ActivityViewHolder>() {
