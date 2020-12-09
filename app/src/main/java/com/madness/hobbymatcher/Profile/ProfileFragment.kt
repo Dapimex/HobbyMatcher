@@ -5,22 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.madness.hobbymatcher.HobbyMatcherApplication
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.adapter.ActivitiesAdapter
 import com.madness.hobbymatcher.networking.ActivityService
-import com.madness.hobbymatcher.networking.HobbyMatcherServiceProvider
 import com.madness.hobbymatcher.networking.response.Activity
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class ProfileFragment : Fragment() {
+class ProfileFragment: Fragment() {
 
-    private val activityService = HobbyMatcherServiceProvider.obtain(ActivityService::class.java)
+    @Inject
+    lateinit var activityService: ActivityService
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        (HobbyMatcherApplication.APPLICATION as HobbyMatcherApplication).appComponent.inject(this)
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
@@ -29,8 +34,7 @@ class ProfileFragment : Fragment() {
 
         val activities: MutableList<Activity> = mutableListOf()
 
-
-        activityService.getMyActivities().enqueue(object: Callback<Array<Activity>> {
+        activityService.getMyActivities().enqueue(object : Callback<Array<Activity>> {
             override fun onFailure(call: Call<Array<Activity>>, t: Throwable) {
                 println("onError:") // Logger for now
                 println(t.message)

@@ -60,8 +60,9 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     // DI
-    // https://mvnrepository.com/artifact/com.google.dagger/dagger
-    implementation group: 'com.google.dagger', name: 'dagger', version: '2.30.1'
-    // https://mvnrepository.com/artifact/com.google.dagger/dagger-compiler
-    annotationProcessor group: 'com.google.dagger', name: 'dagger-compiler', version: '2.30.1'
+    kapt "com.google.dagger:dagger-compiler:2.24"
+    kapt "com.google.dagger:dagger-android-processor:2.24"
+    implementation "com.google.dagger:dagger:2.24"
+    implementation "com.google.dagger:dagger-android:2.24"
+    implementation "com.google.dagger:dagger-android-support:2.24"
 }
