@@ -67,17 +67,17 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
-    private fun ensurePasswordsOkay(field1: EditText, field2: EditText): Boolean {
-        if (field1.text.isEmpty() || field2.text.isEmpty()) {
-            errorFieldIfEmpty(field1, getString(R.string.err_edit_empty))
-            errorFieldIfEmpty(field2, getString(R.string.err_edit_empty))
+    private fun ensurePasswordsOkay(passwordField: EditText, repeatPasswordField: EditText): Boolean {
+        if (passwordField.text.isEmpty() || repeatPasswordField.text.isEmpty()) {
+            errorFieldIfEmpty(passwordField, getString(R.string.err_edit_empty))
+            errorFieldIfEmpty(repeatPasswordField, getString(R.string.err_edit_empty))
             return false
         }
 
-        val passwordsAreSame = field1.text.toString() == field2.text.toString()
+        val passwordsAreSame = passwordField.text.toString() == repeatPasswordField.text.toString()
         if (!passwordsAreSame) {
-            field1.error = getString(R.string.err_passwords_not_same)
-            field2.error = getString(R.string.err_passwords_not_same)
+            passwordField.error = getString(R.string.err_passwords_not_same)
+            repeatPasswordField.error = getString(R.string.err_passwords_not_same)
         }
         return passwordsAreSame
     }
