@@ -16,6 +16,9 @@
         android:name="com.madness.hobbymatcher.AddActivity.AddActivityFragment"
         android:label="fragment_add_activity"
         tools:layout="@layout/fragment_add_activity" >
+        <action
+            android:id="@+id/action_menu_item_add_activity_to_menu_item_profile"
+            app:destination="@id/menu_item_profile" />
     </fragment>
     <fragment
         android:id="@+id/menu_item_profile"

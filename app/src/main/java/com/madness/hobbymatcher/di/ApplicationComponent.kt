@@ -1,5 +1,6 @@
 package com.madness.hobbymatcher.di
 
+import com.madness.hobbymatcher.AddActivity.AddActivityFragment
 import com.madness.hobbymatcher.MainActivity
 import com.madness.hobbymatcher.Profile.ProfileFragment
 import com.madness.hobbymatcher.networking.di.NetworkingModule
@@ -12,4 +13,6 @@ interface ApplicationComponent {
     fun inject(activity: MainActivity)
 
     fun inject(profileFragment: ProfileFragment)
+
+    fun inject(addActivityFragment: AddActivityFragment)
 }
