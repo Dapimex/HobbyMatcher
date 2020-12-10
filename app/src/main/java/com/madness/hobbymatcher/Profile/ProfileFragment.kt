@@ -10,7 +10,7 @@ import com.madness.hobbymatcher.HobbyMatcherApplication
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.adapter.ActivitiesAdapter
 import com.madness.hobbymatcher.networking.ActivityService
-import com.madness.hobbymatcher.networking.response.Activity
+import com.madness.hobbymatcher.networking.response.Activities
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,28 +33,22 @@ class ProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val activities: MutableList<Activity> = mutableListOf()
+        view.createdActivitiesRecyclerView.adapter = ActivitiesAdapter()
 
-        activityService.getMyActivities().enqueue(object: Callback<List<Activity>> {
-            override fun onFailure(call: Call<List<Activity>>, t: Throwable) {
-                println("onError:") // Logger for now
-                println(t.message)
+        activityService.getMyActivities().enqueue(object: Callback<Activities> {
+            override fun onFailure(call: Call<Activities>, t: Throwable) {
                 Toast.makeText(context, "Failed to fetch activities: ${t.message}", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(
-                call: Call<List<Activity>>,
-                response: Response<List<Activity>>
+                call: Call<Activities>,
+                response: Response<Activities>
             ) {
-                println("onResponse:")
-                println(response.code().toString() + response.message().toString())
                 if (response.body() != null) {
-                    activities.addAll(response.body() ?: emptyList())
+                    (view.createdActivitiesRecyclerView.adapter as ActivitiesAdapter).addActivities(response.body()!!.activities)
                 }
             }
 
         })
-
-        view.createdActivitiesRecyclerView.adapter = ActivitiesAdapter(activities)
     }
 }

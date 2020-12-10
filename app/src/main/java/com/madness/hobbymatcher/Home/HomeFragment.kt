@@ -1,20 +1,20 @@
 package com.madness.hobbymatcher.Home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.adapter.InviteActivityAdapter
 import com.madness.hobbymatcher.networking.ActivityService
 import com.madness.hobbymatcher.networking.HobbyMatcherServiceProvider
 import com.madness.hobbymatcher.networking.InvitationService
-import com.madness.hobbymatcher.networking.response.Invitation
+import com.madness.hobbymatcher.networking.response.Activities
 import com.madness.hobbymatcher.networking.response.Activity
+import com.madness.hobbymatcher.networking.response.Invitation
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -64,18 +64,20 @@ class HomeFragment : Fragment() {
             }
         })
 
-        activityService.getMyActivities().enqueue(object: Callback<List<Activity>> {
-            override fun onFailure(call: Call<List<Activity>>, t: Throwable) {
+        activityService.getMyActivities().enqueue(object: Callback<Activities> {
+            override fun onFailure(call: Call<Activities>, t: Throwable) {
                 Toast.makeText(context, "Failed to fetch activities: ${t.message}", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(
-                call: Call<List<Activity>>,
-                response: Response<List<Activity>>
+                call: Call<Activities>,
+                response: Response<Activities>
             ) {
-                (activity_list.adapter as InviteActivityAdapter).addActivities(response.body()
-                    ?.map { InviteActivity.ActivityType(it) }
-                    ?: emptyList())
+                if (response.body() != null) {
+                    (activity_list.adapter as InviteActivityAdapter).addActivities(
+                        response.body()!!.activities
+                            .map { InviteActivity.ActivityType(it) })
+                }
             }
 
         })
