@@ -9,6 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".HobbyMatcherApplication"
         android:theme="@style/Theme.HobbyMatcher">
         <activity android:name=".MainActivity">
             <intent-filter>
