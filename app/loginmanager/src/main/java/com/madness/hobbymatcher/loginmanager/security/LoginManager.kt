@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.madness.hobbymatcher.networking.AuthService
+import com.madness.hobbymatcher.networking.interceptors.CredentialsStore
 import com.madness.hobbymatcher.networking.request.SignInRequest
 import com.madness.hobbymatcher.networking.request.SignUpRequest
 import com.madness.hobbymatcher.networking.response.AuthResponse

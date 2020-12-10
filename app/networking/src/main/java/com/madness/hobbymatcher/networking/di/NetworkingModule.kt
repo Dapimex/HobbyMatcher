@@ -1,6 +1,9 @@
 package com.madness.hobbymatcher.networking.di
 
+import android.content.Context
+import com.example.android.lasttorture.data.interceptors.AuthInterceptor
 import com.madness.hobbymatcher.networking.*
+import com.madness.hobbymatcher.networking.interceptors.CredentialsStore
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -50,10 +53,27 @@ class NetworkingModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(): OkHttpClient {
+    fun providesOkHttpClient(
+        authInterceptor: AuthInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
+            .addInterceptor(authInterceptor)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesAuthInterceptor(credentialsStore: CredentialsStore) : AuthInterceptor {
+        return AuthInterceptor(credentialsStore)
+    }
+
+    @Provides
+    @Singleton
+    fun providesCredentialsStore(context: Context) : CredentialsStore {
+        return CredentialsStore(
+            context
+        )
     }
 }

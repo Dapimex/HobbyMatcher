@@ -81,10 +81,12 @@ class InviteActivityAdapter
 
     fun addActivities(activities: List<InviteActivity>) {
         this.activities.addAll(activities)
+        notifyDataSetChanged()
     }
 
     fun clearActivities() {
         this.activities.clear()
+        notifyDataSetChanged()
     }
 }
 
