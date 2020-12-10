@@ -10,21 +10,21 @@ import com.madness.hobbymatcher.loginmanager.databinding.ActivityLoginBinding
 import com.madness.hobbymatcher.loginmanager.misc.*
 import com.madness.hobbymatcher.loginmanager.security.LoginManager
 import com.madness.hobbymatcher.loginmanager.security.LoginResult
+import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
+    @Inject
+    lateinit var loginManager: LoginManager
 
     private var _layout: ActivityLoginBinding? = null
     private val layout get() = _layout!!
 
-    private var _loginManager: LoginManager? = null
-    private val loginManager get() = _loginManager!!
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState)
         _layout = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(layout.root)
-
-        _loginManager = LoginManager(this)
     }
 
     fun onLoginButtonClick(button: View) {

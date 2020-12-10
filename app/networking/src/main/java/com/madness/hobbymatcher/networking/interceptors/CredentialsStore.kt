@@ -1,4 +1,4 @@
-package com.madness.hobbymatcher.loginmanager.security
+package com.madness.hobbymatcher.networking.interceptors
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -19,7 +19,8 @@ class CredentialsStore(context: Context) {
             .build()
 
         preferences = EncryptedSharedPreferences.create(
-            context.applicationContext, SECURE_PREFS_KEY, masterKey,
+            context.applicationContext,
+            SECURE_PREFS_KEY, masterKey,
             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )

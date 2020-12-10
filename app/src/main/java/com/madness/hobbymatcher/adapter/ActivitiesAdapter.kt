@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.networking.response.Activity
 
-class ActivitiesAdapter(private val activities: List<Activity>)
-    : RecyclerView.Adapter<ActivitiesAdapter.ActivityViewHolder>() {
+class ActivitiesAdapter()
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val activities: MutableList<Activity> = mutableListOf()
 
     class ActivityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
@@ -25,20 +27,29 @@ class ActivitiesAdapter(private val activities: List<Activity>)
         }
     }
 
-    private fun ViewGroup.inflate(layoutRes: Int, attachToRoot: Boolean = false): View {
-        return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityViewHolder {
-        return ActivityViewHolder(parent.inflate(R.layout.activity_list_item))
+        return ActivityViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.activity_list_item, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
         return activities.size
     }
 
-    override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
-        holder.bind(activities[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        println(position)
+        (holder as ActivityViewHolder).bind(activities[position])
     }
 
+    fun addActivities(activities: List<Activity>) {
+        this.activities.addAll(activities)
+        println("Added this: " + this.activities.toString())
+        notifyDataSetChanged()
+    }
+
+    fun clearActivities() {
+        this.activities.clear()
+        notifyDataSetChanged()
+    }
 }

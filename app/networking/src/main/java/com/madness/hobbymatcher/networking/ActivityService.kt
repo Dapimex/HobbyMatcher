@@ -1,5 +1,6 @@
 package com.madness.hobbymatcher.networking
 
+import com.madness.hobbymatcher.networking.response.Activities
 import com.madness.hobbymatcher.networking.response.Activity
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -31,7 +32,7 @@ interface ActivityService {
     ): Call<ResponseBody>
 
     @GET("activities/created")
-    fun getMyActivities(): Call<List<Activity>>
+    fun getMyActivities(): Call<Activities>
 
     @GET("activities/joined")
     fun getJoinedActivities(): Call<List<Activity>>

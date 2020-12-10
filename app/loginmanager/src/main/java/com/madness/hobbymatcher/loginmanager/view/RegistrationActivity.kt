@@ -11,21 +11,21 @@ import com.madness.hobbymatcher.loginmanager.databinding.ActivityRegistrationBin
 import com.madness.hobbymatcher.loginmanager.misc.*
 import com.madness.hobbymatcher.loginmanager.security.LoginManager
 import com.madness.hobbymatcher.loginmanager.security.LoginResult
+import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 class RegistrationActivity : AppCompatActivity() {
+    @Inject
+    lateinit var loginManager: LoginManager
 
     private var _layout: ActivityRegistrationBinding? = null
     private val layout get() = _layout!!
 
-    private var _loginManager: LoginManager? = null
-    private val loginManager get() = _loginManager!!
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState)
         _layout = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(layout.root)
-
-        _loginManager = LoginManager(this)
     }
 
     fun onRegisterButtonClick(button: View) {
@@ -68,7 +68,10 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
-    private fun ensurePasswordsOkay(passwordField: EditText, repeatPasswordField: EditText): Boolean {
+    private fun ensurePasswordsOkay(
+        passwordField: EditText,
+        repeatPasswordField: EditText
+    ): Boolean {
         if (passwordField.text.isEmpty() || repeatPasswordField.text.isEmpty()) {
             errorFieldIfEmpty(passwordField, getString(R.string.err_edit_empty))
             errorFieldIfEmpty(repeatPasswordField, getString(R.string.err_edit_empty))
