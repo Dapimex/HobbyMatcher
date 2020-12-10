@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.madness.hobbymatcher.loginmanager.R
 import com.madness.hobbymatcher.loginmanager.databinding.ActivityLoginBinding
 import com.madness.hobbymatcher.loginmanager.misc.*
@@ -42,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
             setControlsBusy(button, layout.progressBar)
 
             val signInResult = loginManager.startSignIn(username.toString(), password.toString())
-            signInResult.observe(this, { loginResult ->
+            signInResult.observe(this, Observer { loginResult ->
                 when (loginResult) {
                     LoginResult.SUCCESS -> finish()
                     LoginResult.INVALID -> snackbarMessage(

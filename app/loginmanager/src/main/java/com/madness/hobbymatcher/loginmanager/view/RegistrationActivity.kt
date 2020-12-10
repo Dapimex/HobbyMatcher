@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.madness.hobbymatcher.loginmanager.R
 import com.madness.hobbymatcher.loginmanager.databinding.ActivityRegistrationBinding
 import com.madness.hobbymatcher.loginmanager.misc.*
@@ -47,7 +48,7 @@ class RegistrationActivity : AppCompatActivity() {
             val password = editPassword.text.toString()
 
             val signUpResult = loginManager.startSignUp(username, password)
-            signUpResult.observe(this, { loginResult ->
+            signUpResult.observe(this, Observer { loginResult ->
                 when (loginResult) {
                     LoginResult.SUCCESS -> finish()
                     LoginResult.INVALID -> snackbarMessage(
