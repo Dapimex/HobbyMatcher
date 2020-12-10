@@ -8,38 +8,31 @@ import retrofit2.http.*
 interface ActivityService {
     @GET("activities")
     fun getVisibleActivities(
-        @Query("id") id: Int,
-        @Query("username") username: String
-    ): Call<Array<Activity>>
+    ): Call<List<Activity>>
 
     @POST("activities")
     fun createActivity(
-        @Query("createRequest") createRequest: Activity,
-        @Query("id") id: Int,
-        @Query("username") username: String
+        @Body activity: Activity
     ): Call<Activity>
 
-    @GET("activities/{id{")
+    @GET("activities/{id}")
     fun getActivity(
-        @Path("id") id: Int,
-        @Query("username") username: String
+        @Path("id") id: Int
     ): Call<Activity>
 
     @DELETE("activities/{id}")
     fun deleteActivity(
-        @Path("id") id: Int,
-        @Query("username") username: String
+        @Path("id") id: Int
     ): Call<ResponseBody>
 
     @POST("activities/{id}/join")
     fun addUserToActivity(
-        @Path("id") id: Int,
-        @Query("username") username: String
+        @Path("id") id: Int
     ): Call<ResponseBody>
 
     @GET("activities/created")
-    fun getMyActivities(): Call<Array<Activity>>
+    fun getMyActivities(): Call<List<Activity>>
 
     @GET("activities/joined")
-    fun getJoinedActivities(): Call<Array<Activity>>
+    fun getJoinedActivities(): Call<List<Activity>>
 }
