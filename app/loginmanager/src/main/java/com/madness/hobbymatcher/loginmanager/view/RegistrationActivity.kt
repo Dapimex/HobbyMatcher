@@ -16,12 +16,15 @@ class RegistrationActivity : AppCompatActivity() {
     private var _layout: ActivityRegistrationBinding? = null
     private val layout get() = _layout!!
 
-    private val loginManager = LoginManager(this)
+    private var _loginManager: LoginManager? = null
+    private val loginManager get() = _loginManager!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _layout = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(layout.root)
+
+        _loginManager = LoginManager(this)
     }
 
     fun onRegisterButtonClick(button: View) {
@@ -35,7 +38,10 @@ class RegistrationActivity : AppCompatActivity() {
             errorFieldIfEmpty(editText, getString(R.string.err_edit_empty))
         }
 
-        if (ensurePasswordsSame(editPassword, editPasswordRepeat)) {
+        if (ensurePasswordsOkay(
+                editPassword, editPasswordRepeat
+            ) && editUsername.text.isNotEmpty()
+        ) {
             setControlsBusy(button, layout.progressBar)
             val username = editUsername.text.toString()
             val password = editPassword.text.toString()
@@ -61,12 +67,18 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
-    private fun ensurePasswordsSame(field1: EditText, field2: EditText): Boolean {
-        val passwordsSame = field1.text == field2.text
-        if (!passwordsSame) {
-            field1.error = getString(R.string.err_passwords_not_same)
-            field2.error = getString(R.string.err_passwords_not_same)
+    private fun ensurePasswordsOkay(passwordField: EditText, repeatPasswordField: EditText): Boolean {
+        if (passwordField.text.isEmpty() || repeatPasswordField.text.isEmpty()) {
+            errorFieldIfEmpty(passwordField, getString(R.string.err_edit_empty))
+            errorFieldIfEmpty(repeatPasswordField, getString(R.string.err_edit_empty))
+            return false
         }
-        return passwordsSame
+
+        val passwordsAreSame = passwordField.text.toString() == repeatPasswordField.text.toString()
+        if (!passwordsAreSame) {
+            passwordField.error = getString(R.string.err_passwords_not_same)
+            repeatPasswordField.error = getString(R.string.err_passwords_not_same)
+        }
+        return passwordsAreSame
     }
 }

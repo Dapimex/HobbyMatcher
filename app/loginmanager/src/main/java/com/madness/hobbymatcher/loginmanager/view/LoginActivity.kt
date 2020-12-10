@@ -15,12 +15,15 @@ class LoginActivity : AppCompatActivity() {
     private var _layout: ActivityLoginBinding? = null
     private val layout get() = _layout!!
 
-    private val loginManager = LoginManager(this)
+    private var _loginManager: LoginManager? = null
+    private val loginManager get() = _loginManager!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _layout = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(layout.root)
+
+        _loginManager = LoginManager(this)
     }
 
     fun onLoginButtonClick(button: View) {
