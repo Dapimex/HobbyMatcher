@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.madness.hobbymatcher.Home.InviteActivity
+import com.madness.hobbymatcher.fragment.InviteActivity
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.networking.response.Activity
 import com.madness.hobbymatcher.networking.response.Invitation

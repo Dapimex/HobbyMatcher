@@ -1,4 +1,4 @@
-package com.madness.hobbymatcher.Home
+package com.madness.hobbymatcher.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -59,7 +59,11 @@ class HomeFragment : Fragment() {
                 response: Response<List<Invitation>>
             ) {
                 (activity_list.adapter as InviteActivityAdapter).addActivities(response.body()
-                    ?.map { InviteActivity.InviteType(it) }
+                    ?.map {
+                        InviteActivity.InviteType(
+                            it
+                        )
+                    }
                     ?: emptyList())
             }
         })
@@ -76,7 +80,11 @@ class HomeFragment : Fragment() {
                 if (response.body() != null) {
                     (activity_list.adapter as InviteActivityAdapter).addActivities(
                         response.body()!!.activities
-                            .map { InviteActivity.ActivityType(it) })
+                            .map {
+                                InviteActivity.ActivityType(
+                                    it
+                                )
+                            })
                 }
             }
 
