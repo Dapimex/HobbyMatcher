@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.madness.hobbymatcher.loginmanager.R
 import com.madness.hobbymatcher.loginmanager.databinding.ActivityLoginBinding
-import com.madness.hobbymatcher.loginmanager.misc.*
+import com.madness.hobbymatcher.loginmanager.misc.errorFieldIfEmpty
+import com.madness.hobbymatcher.loginmanager.misc.setViewsEnabled
+import com.madness.hobbymatcher.loginmanager.misc.snackbarMessage
+import com.madness.hobbymatcher.loginmanager.misc.trimField
 import com.madness.hobbymatcher.loginmanager.security.LoginManager
 import com.madness.hobbymatcher.loginmanager.security.LoginResult
 import dagger.android.AndroidInjection
@@ -21,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private val layout get() = _layout!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this);
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         _layout = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(layout.root)
@@ -40,10 +42,11 @@ class LoginActivity : AppCompatActivity() {
         val username = editUsername.text
         val password = editPassword.text
         if (username.isNotEmpty() && password.isNotEmpty()) {
-            setControlsBusy(button, layout.progressBar)
+            setViewsEnabled(false, button, editUsername, editPassword)
+            layout.progressBar.visibility = View.VISIBLE
 
             val signInResult = loginManager.startSignIn(username.toString(), password.toString())
-            signInResult.observe(this, Observer { loginResult ->
+            signInResult.observe(this, { loginResult ->
                 when (loginResult) {
                     LoginResult.SUCCESS -> finish()
                     LoginResult.INVALID -> snackbarMessage(
@@ -57,7 +60,9 @@ class LoginActivity : AppCompatActivity() {
                     else -> {
                     }
                 }
-                unsetControlsBusy(button, layout.progressBar)
+
+                setViewsEnabled(true, button, editUsername, editPassword)
+                layout.progressBar.visibility = View.INVISIBLE
             })
         }
     }

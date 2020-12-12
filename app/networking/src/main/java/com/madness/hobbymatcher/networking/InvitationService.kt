@@ -1,13 +1,14 @@
 package com.madness.hobbymatcher.networking
 
 import com.madness.hobbymatcher.networking.response.Invitation
+import com.madness.hobbymatcher.networking.response.Invitations
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
 interface InvitationService {
     @GET("invitations")
-    fun getMyInvitations(): Call<List<Invitation>>
+    fun getMyInvitations(): Call<Invitations>
 
     @POST("invitations/{id}/accept")
     fun acceptInvitation(
