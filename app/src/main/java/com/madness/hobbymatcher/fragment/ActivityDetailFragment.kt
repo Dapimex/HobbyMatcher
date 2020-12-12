@@ -23,7 +23,7 @@ import javax.inject.Inject
 
 class ActivityDetailFragment : Fragment() {
 
-    var activityId: Int = -1
+    var activityId: Int? = null
 
     private val frontSdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
     private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
@@ -47,9 +47,9 @@ class ActivityDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (activityId != -1) {
+        if (activityId != null) {
 
-            activityService.getActivity(activityId).enqueue(object : Callback<Activity> {
+            activityService.getActivity(activityId!!).enqueue(object : Callback<Activity> {
                 override fun onFailure(call: Call<Activity>, t: Throwable) {
                     Toast.makeText(context, "Failed to fetch activity details", Toast.LENGTH_SHORT)
                         .show()
