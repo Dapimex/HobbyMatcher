@@ -16,5 +16,5 @@ interface UserService {
     fun getUser(@Path("id") id: Int): Call<User>
 
     @GET("whoami")
-    fun whoAmI(@Body whoAmI: WhoAmI): Call<WhoAmI>
+    fun whoAmI(): Call<WhoAmI>
 }

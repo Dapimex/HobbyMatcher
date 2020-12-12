@@ -20,7 +20,7 @@
             android:id="@+id/profileAvatarImageView"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            tools:src="@tools:sample/avatars"
+            android:src="@mipmap/ic_launcher"
             android:contentDescription="avatar" />
 
         <TextView
@@ -28,9 +28,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username"
+            android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_marginLeft="28dp"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
 
