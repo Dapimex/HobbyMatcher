@@ -96,7 +96,7 @@ class AddActivityFragment : Fragment() {
                     Toast.makeText(context, "Successfully created activity", Toast.LENGTH_SHORT).show()
                     view?.findNavController()?.navigate(R.id.action_menu_item_add_activity_to_menu_item_profile)
                 } else {
-                    Toast.makeText(context, "Failed to upload activity: ${response}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Failed to upload activity: $response", Toast.LENGTH_LONG).show()
                 }
             }
         })

@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.madness.hobbymatcher.HobbyMatcherApplication
@@ -50,6 +51,12 @@ class InviteActivityAdapter
             locationTextView.text = activity.location
             deleteButton.visibility = View.INVISIBLE
             deleteButton.isClickable = false
+            itemView.setOnClickListener {
+                itemView.findNavController().navigate(
+                    R.id.action_menu_item_home_to_activityDetailFragment,
+                    bundleOf("id" to activity.id)
+                )
+            }
         }
     }
 
@@ -107,6 +114,12 @@ class InviteActivityAdapter
 
                 })
                 deleteFunction.invoke(InviteActivity.InviteType(invite))
+            }
+            itemView.setOnClickListener {
+                itemView.findNavController().navigate(
+                    R.id.action_menu_item_home_to_activityDetailFragment,
+                    bundleOf("id" to invite.activity?.id)
+                )
             }
         }
     }

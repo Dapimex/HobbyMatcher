@@ -56,7 +56,6 @@ class ActivityDetailFragment : Fragment() {
                 }
 
                 override fun onResponse(call: Call<Activity>, response: Response<Activity>) {
-                    println(response.body())
                     if (response.body() != null) {
                         bind(view, response.body()!!)
                     }
