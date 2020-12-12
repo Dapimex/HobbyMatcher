@@ -2,9 +2,7 @@ package com.madness.hobbymatcher.loginmanager.misc
 
 import android.text.Editable
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import com.google.android.material.snackbar.Snackbar
 
 fun trimField(edit: EditText) {
@@ -17,14 +15,10 @@ fun errorFieldIfEmpty(edit: EditText, reason: String) {
     }
 }
 
-fun setControlsBusy(button: Button, progressBar: ProgressBar) {
-    button.isEnabled = false
-    progressBar.visibility = View.VISIBLE
-}
-
-fun unsetControlsBusy(button: Button, progressBar: ProgressBar) {
-    button.isEnabled = true
-    progressBar.visibility = View.INVISIBLE
+fun setViewsEnabled(enabled: Boolean, vararg views: View) {
+    for (view in views) {
+        view.isEnabled = enabled
+    }
 }
 
 fun snackbarMessage(view: View, message: String) {

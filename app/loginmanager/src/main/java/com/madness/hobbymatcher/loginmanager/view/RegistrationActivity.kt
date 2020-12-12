@@ -5,10 +5,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.madness.hobbymatcher.loginmanager.R
 import com.madness.hobbymatcher.loginmanager.databinding.ActivityRegistrationBinding
-import com.madness.hobbymatcher.loginmanager.misc.*
+import com.madness.hobbymatcher.loginmanager.misc.errorFieldIfEmpty
+import com.madness.hobbymatcher.loginmanager.misc.setViewsEnabled
+import com.madness.hobbymatcher.loginmanager.misc.snackbarMessage
+import com.madness.hobbymatcher.loginmanager.misc.trimField
 import com.madness.hobbymatcher.loginmanager.security.LoginManager
 import com.madness.hobbymatcher.loginmanager.security.LoginResult
 import dagger.android.AndroidInjection
@@ -22,7 +24,7 @@ class RegistrationActivity : AppCompatActivity() {
     private val layout get() = _layout!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this);
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         _layout = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(layout.root)
@@ -43,12 +45,14 @@ class RegistrationActivity : AppCompatActivity() {
                 editPassword, editPasswordRepeat
             ) && editUsername.text.isNotEmpty()
         ) {
-            setControlsBusy(button, layout.progressBar)
+            setViewsEnabled(false, button, editUsername, editPassword, editPasswordRepeat)
+            layout.progressBar.visibility = View.VISIBLE
+
             val username = editUsername.text.toString()
             val password = editPassword.text.toString()
 
             val signUpResult = loginManager.startSignUp(username, password)
-            signUpResult.observe(this, Observer { loginResult ->
+            signUpResult.observe(this, { loginResult ->
                 when (loginResult) {
                     LoginResult.SUCCESS -> finish()
                     LoginResult.INVALID -> snackbarMessage(
@@ -62,7 +66,9 @@ class RegistrationActivity : AppCompatActivity() {
                     else -> {
                     }
                 }
-                unsetControlsBusy(button, layout.progressBar)
+
+                setViewsEnabled(true, button, editUsername, editPassword, editPasswordRepeat)
+                layout.progressBar.visibility = View.INVISIBLE
             })
         }
 
