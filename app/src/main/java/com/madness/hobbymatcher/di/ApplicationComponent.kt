@@ -1,9 +1,8 @@
 package com.madness.hobbymatcher.di
 
 import com.madness.hobbymatcher.HobbyMatcherApplication
-import com.madness.hobbymatcher.AddActivity.AddActivityFragment
-import com.madness.hobbymatcher.MainActivity
-import com.madness.hobbymatcher.Profile.ProfileFragment
+import com.madness.hobbymatcher.fragment.AddActivityFragment
+import com.madness.hobbymatcher.fragment.ProfileFragment
 import com.madness.hobbymatcher.loginmanager.di.LoginModule
 import com.madness.hobbymatcher.loginmanager.view.LoginActivity
 import com.madness.hobbymatcher.loginmanager.view.RegistrationActivity

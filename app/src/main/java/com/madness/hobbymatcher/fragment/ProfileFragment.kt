@@ -1,4 +1,4 @@
-package com.madness.hobbymatcher.Profile
+package com.madness.hobbymatcher.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

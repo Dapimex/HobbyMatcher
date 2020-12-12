@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/menu_item_home"
-        android:name="com.madness.hobbymatcher.Home.HomeFragment"
+        android:name="com.madness.hobbymatcher.fragment.HomeFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_home" >
     </fragment>
     <fragment
         android:id="@+id/menu_item_add_activity"
-        android:name="com.madness.hobbymatcher.AddActivity.AddActivityFragment"
+        android:name="com.madness.hobbymatcher.fragment.AddActivityFragment"
         android:label="fragment_add_activity"
         tools:layout="@layout/fragment_add_activity" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/menu_item_profile"
-        android:name="com.madness.hobbymatcher.Profile.ProfileFragment"
+        android:name="com.madness.hobbymatcher.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
