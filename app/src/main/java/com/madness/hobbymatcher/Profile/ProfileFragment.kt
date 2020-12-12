@@ -40,7 +40,7 @@ class ProfileFragment: Fragment() {
     }
 
     private fun updateData() {
-        (view!!.createdActivitiesRecyclerView.adapter as ActivitiesAdapter).clearActivities()
+        (requireView().createdActivitiesRecyclerView.adapter as ActivitiesAdapter).clearActivities()
 
         activityService.getMyActivities().enqueue(object: Callback<Activities> {
             override fun onFailure(call: Call<Activities>, t: Throwable) {
