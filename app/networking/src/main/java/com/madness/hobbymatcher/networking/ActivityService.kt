@@ -35,5 +35,5 @@ interface ActivityService {
     fun getMyActivities(): Call<Activities>
 
     @GET("activities/joined")
-    fun getJoinedActivities(): Call<List<Activity>>
+    fun getJoinedActivities(): Call<Activities>
 }

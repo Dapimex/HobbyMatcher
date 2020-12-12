@@ -2,24 +2,44 @@ package com.madness.hobbymatcher.adapter
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.networking.response.Activity
 
-class ActivitiesAdapter()
+class ActivitiesAdapter(
+    private val deleteFunction: ((Int) -> Unit)
+)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val activities: MutableList<Activity> = mutableListOf()
+    private val myActivities: MutableList<Activity> = mutableListOf()
+    private val joinedActivities: MutableList<Activity> = mutableListOf()
 
-    class ActivityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
-        val descriptionTextView: TextView = view.findViewById(R.id.activityDescriptionListItemTextView)
-        val startTimeTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
-        val locationTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
+    class ActivityViewHolder(view: View, private val deleteFunction: (Int) -> Unit) : RecyclerView.ViewHolder(view) {
+        private val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
+        private val descriptionTextView: TextView = view.findViewById(R.id.activityDescriptionListItemTextView)
+        private val startTimeTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
+        private val locationTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
+        private val deleteActivityButton: ImageButton = view.findViewById(R.id.activityListItemDeleteButton)
+        private val holder: ConstraintLayout = view.findViewById(R.id.listItemHolder)
 
-        fun bind(activity: Activity) {
+        fun bind(activity: Activity, isMyActivity: Boolean) {
+            if (isMyActivity) {
+                holder.setBackgroundResource(R.drawable.custom_border)
+                deleteActivityButton.setOnClickListener {
+                    activity.id?.let { deleteFunction.invoke(it) }
+                }
+                deleteActivityButton.visibility = VISIBLE
+                deleteActivityButton.isClickable = true
+            } else {
+                deleteActivityButton.visibility = INVISIBLE
+                deleteActivityButton.isClickable = false
+            }
             nameTextView.text = activity.name
             descriptionTextView.text = activity.description
             startTimeTextView.text = activity.startTime
@@ -29,27 +49,36 @@ class ActivitiesAdapter()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityViewHolder {
         return ActivityViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.activity_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.activity_list_item, parent, false),
+            deleteFunction
         )
     }
 
     override fun getItemCount(): Int {
-        return activities.size
+        return myActivities.size + joinedActivities.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        println(position)
-        (holder as ActivityViewHolder).bind(activities[position])
+        if (position >= myActivities.size) {
+            (holder as ActivityViewHolder).bind(joinedActivities[position - myActivities.size], false)
+        } else {
+            (holder as ActivityViewHolder).bind(myActivities[position], true)
+        }
     }
 
-    fun addActivities(activities: List<Activity>) {
-        this.activities.addAll(activities)
-        println("Added this: " + this.activities.toString())
+    fun addMyActivities(activities: List<Activity>) {
+        this.myActivities.addAll(activities)
+        notifyDataSetChanged()
+    }
+
+    fun addJoinedActivities(activities: List<Activity>) {
+        this.joinedActivities.addAll(activities)
         notifyDataSetChanged()
     }
 
     fun clearActivities() {
-        this.activities.clear()
+        this.myActivities.clear()
+        this.joinedActivities.clear()
         notifyDataSetChanged()
     }
 }
