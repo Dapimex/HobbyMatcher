@@ -1,4 +1,4 @@
-package com.madness.hobbymatcher.Profile
+package com.madness.hobbymatcher.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,10 @@ import com.madness.hobbymatcher.HobbyMatcherApplication
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.adapter.ActivitiesAdapter
 import com.madness.hobbymatcher.networking.ActivityService
+import com.madness.hobbymatcher.networking.UserService
 import com.madness.hobbymatcher.networking.response.Activities
+import com.madness.hobbymatcher.networking.response.WhoAmI
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -22,6 +25,9 @@ class ProfileFragment: Fragment() {
 
     @Inject
     lateinit var activityService: ActivityService
+
+    @Inject
+    lateinit var userService: UserService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +41,18 @@ class ProfileFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.createdActivitiesRecyclerView.adapter = ActivitiesAdapter { id -> deleteActivity(id)}
+
+        userService.whoAmI().enqueue(object: Callback<WhoAmI> {
+            override fun onFailure(call: Call<WhoAmI>, t: Throwable) {
+                Toast.makeText(context, "Failed to fetch my username: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: Call<WhoAmI>, response: Response<WhoAmI>) {
+                if (response.body() != null) {
+                    profileUserTextView.text = response.body()!!.username
+                }
+            }
+        })
 
         updateData()
     }
