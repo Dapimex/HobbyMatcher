@@ -11,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -24,7 +25,7 @@ class NetworkingModule {
 
     @Provides
     @Singleton
-    fun providesAuthService(retrofit: Retrofit) : AuthService {
+    fun providesAuthService(@Named("withoutToken") retrofit: Retrofit) : AuthService {
         return retrofit.create(AuthService::class.java)
     }
 
@@ -53,6 +54,20 @@ class NetworkingModule {
 
     @Provides
     @Singleton
+    @Named("withoutToken")
+    fun providesAuthRetrofitWithoutToken(
+        @Named("withoutToken") okHttpClient: OkHttpClient
+    ) : Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+    }
+
+    @Provides
+    @Singleton
     fun providesOkHttpClient(
         authInterceptor: AuthInterceptor
     ): OkHttpClient {
@@ -60,6 +75,16 @@ class NetworkingModule {
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(authInterceptor)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    @Named("withoutToken")
+    fun providesOkHttpClientWithoutToken() : OkHttpClient {
+        return OkHttpClient.Builder()
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .build()
     }
 
