@@ -9,13 +9,16 @@
         android:id="@+id/menu_item_home"
         android:name="com.madness.hobbymatcher.fragment.HomeFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_menu_item_home_to_activityDetailFragment"
+            app:destination="@id/activityDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/menu_item_add_activity"
         android:name="com.madness.hobbymatcher.fragment.AddActivityFragment"
         android:label="fragment_add_activity"
-        tools:layout="@layout/fragment_add_activity" >
+        tools:layout="@layout/fragment_add_activity">
         <action
             android:id="@+id/action_menu_item_add_activity_to_menu_item_profile"
             app:destination="@id/menu_item_profile" />
@@ -24,5 +27,13 @@
         android:id="@+id/menu_item_profile"
         android:name="com.madness.hobbymatcher.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_menu_item_profile_to_activityDetailFragment"
+            app:destination="@id/activityDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityDetailFragment"
+        android:name="com.madness.hobbymatcher.fragment.ActivityDetailFragment"
+        android:label="ActivityDetailFragment" />
 </navigation>
