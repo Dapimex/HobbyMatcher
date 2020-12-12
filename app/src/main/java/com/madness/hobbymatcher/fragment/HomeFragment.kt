@@ -66,7 +66,6 @@ class HomeFragment : Fragment() {
                 call: Call<Invitations>,
                 response: Response<Invitations>
             ) {
-                println(response.body())
                 if (response.body() != null) {
                     (activity_list.adapter as InviteActivityAdapter).addActivities(
                             response.body()!!.invitations
