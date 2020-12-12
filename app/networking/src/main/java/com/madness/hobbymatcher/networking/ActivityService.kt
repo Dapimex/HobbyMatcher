@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface ActivityService {
     @GET("activities")
     fun getVisibleActivities(
-    ): Call<List<Activity>>
+    ): Call<Activities>
 
     @POST("activities")
     fun createActivity(
