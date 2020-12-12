@@ -12,6 +12,7 @@ import com.madness.hobbymatcher.adapter.ActivitiesAdapter
 import com.madness.hobbymatcher.networking.ActivityService
 import com.madness.hobbymatcher.networking.response.Activities
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,11 +34,17 @@ class ProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.createdActivitiesRecyclerView.adapter = ActivitiesAdapter()
+        view.createdActivitiesRecyclerView.adapter = ActivitiesAdapter { id -> deleteActivity(id)}
+
+        updateData()
+    }
+
+    private fun updateData() {
+        (requireView().createdActivitiesRecyclerView.adapter as ActivitiesAdapter).clearActivities()
 
         activityService.getMyActivities().enqueue(object: Callback<Activities> {
             override fun onFailure(call: Call<Activities>, t: Throwable) {
-                Toast.makeText(context, "Failed to fetch activities: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Failed to fetch my activities: ${t.message}", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(
@@ -45,10 +52,37 @@ class ProfileFragment: Fragment() {
                 response: Response<Activities>
             ) {
                 if (response.body() != null) {
-                    (view.createdActivitiesRecyclerView.adapter as ActivitiesAdapter).addActivities(response.body()!!.activities)
+                    (view!!.createdActivitiesRecyclerView.adapter as ActivitiesAdapter).addMyActivities(response.body()!!.activities)
                 }
             }
 
+        })
+
+        activityService.getJoinedActivities().enqueue(object: Callback<Activities> {
+            override fun onFailure(call: Call<Activities>, t: Throwable) {
+                Toast.makeText(context, "Failed to fetch joined activities: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(
+                call: Call<Activities>,
+                response: Response<Activities>
+            ) {
+                if (response.body() != null) {
+                    (view!!.createdActivitiesRecyclerView.adapter as ActivitiesAdapter).addJoinedActivities(response.body()!!.activities)
+                }
+            }
+        })
+    }
+
+    private fun deleteActivity(activityId : Int) {
+        activityService.deleteActivity(activityId).enqueue(object: Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(context, "Failed to delete activity: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                updateData()
+            }
         })
     }
 }
