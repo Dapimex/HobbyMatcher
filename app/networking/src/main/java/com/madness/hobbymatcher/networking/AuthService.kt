@@ -19,9 +19,4 @@ interface AuthService {
     fun signUp(
         @Body signUp: SignUpRequest
     ): Call<AuthResponse>
-
-    @GET("whoami")
-    fun whoAmI(
-        @Body whoAmI: WhoAmI
-    ): Call<WhoAmI>
 }

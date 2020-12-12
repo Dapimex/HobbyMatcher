@@ -1,7 +1,9 @@
 package com.madness.hobbymatcher.networking
 
 import com.madness.hobbymatcher.networking.response.User
+import com.madness.hobbymatcher.networking.response.WhoAmI
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -12,4 +14,7 @@ interface UserService {
 
     @GET("users/{id}")
     fun getUser(@Path("id") id: Int): Call<User>
+
+    @GET("whoami")
+    fun whoAmI(@Body whoAmI: WhoAmI): Call<WhoAmI>
 }
