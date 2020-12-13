@@ -3,81 +3,72 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:layout_marginVertical="2dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/inviteSenderListItemTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
-        <LinearLayout
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/inviteActivityNameListItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/inviteSenderListItemTextView"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:id="@+id/inviteActivityNameListItemTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/inviteActivityLocationListItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inviteActivityNameListItemTextView"
+        />
 
-            <TextView
-                android:id="@+id/inviteActivityDescriptionListItemTextView"
-                android:layout_marginStart="24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/inviteActivityStartTimeListItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inviteActivityLocationListItemTextView"
+        />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/inviteActivityLocationListItemTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
 
-            <TextView
-                android:id="@+id/inviteActivityStartTimeListItemTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+    <ImageButton
+        android:id="@+id/inviteListItemAcceptButton"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        android:tint="@color/green"
+        app:layout_constraintTop_toTopOf="@id/inviteListItemDeclineButton"
+        app:layout_constraintBottom_toBottomOf="@id/inviteListItemDeclineButton"
+        app:layout_constraintEnd_toStartOf="@id/inviteListItemDeclineButton"
+        />
 
-        </LinearLayout>
+    <ImageButton
+        android:id="@+id/inviteListItemDeclineButton"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:srcCompat="@drawable/ic_baseline_cancel_24"
+        android:tint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <ImageButton
-            android:id="@+id/inviteListItemAcceptButton"
-            android:layout_width="24dp"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 
-        <ImageButton
-            android:id="@+id/inviteListItemDeclineButton"
-            android:layout_width="24dp"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            app:srcCompat="@drawable/ic_baseline_cancel_24" />
-
-        <TextView
-            android:id="@+id/inviteTimeListItemTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <TextView
-            android:id="@+id/inviteSenderListItemTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

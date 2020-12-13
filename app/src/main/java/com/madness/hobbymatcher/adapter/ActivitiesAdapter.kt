@@ -24,8 +24,6 @@ class ActivitiesAdapter(
     class ActivityViewHolder(val view: View, private val deleteFunction: (Int) -> Unit) :
         RecyclerView.ViewHolder(view) {
         private val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
-        private val descriptionTextView: TextView =
-            view.findViewById(R.id.activityDescriptionListItemTextView)
         private val startTimeTextView: TextView =
             view.findViewById(R.id.activityStartTimeListItemTextView)
         private val locationTextView: TextView =
@@ -47,7 +45,6 @@ class ActivitiesAdapter(
                 deleteActivityButton.isClickable = false
             }
             nameTextView.text = activity.name
-            descriptionTextView.text = activity.description
             startTimeTextView.text = activity.startTime
             locationTextView.text = activity.location
 
