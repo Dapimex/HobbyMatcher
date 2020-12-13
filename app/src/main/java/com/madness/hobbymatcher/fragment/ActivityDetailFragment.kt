@@ -12,8 +12,10 @@ import com.madness.hobbymatcher.HobbyMatcherApplication
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.adapter.ParticipantsAdapter
 import com.madness.hobbymatcher.networking.ActivityService
+import com.madness.hobbymatcher.networking.interceptors.CredentialsStore
 import com.madness.hobbymatcher.networking.response.Activity
 import kotlinx.android.synthetic.main.activity_detail.view.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,6 +33,9 @@ class ActivityDetailFragment : Fragment() {
     @Inject
     lateinit var activityService: ActivityService
 
+    @Inject
+    lateinit var credentialsStore: CredentialsStore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityId = requireArguments().get("id") as Int
@@ -47,21 +52,37 @@ class ActivityDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (activityId != null) {
+        updateData(view)
 
-            activityService.getActivity(activityId!!).enqueue(object : Callback<Activity> {
-                override fun onFailure(call: Call<Activity>, t: Throwable) {
-                    Toast.makeText(context, "Failed to fetch activity details", Toast.LENGTH_SHORT)
-                        .show()
+        view.joinButton.setOnClickListener {
+            activityService.joinActivity(activityId!!).enqueue(object : Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Toast.makeText(context, "Failed to join activity", Toast.LENGTH_SHORT).show()
                 }
 
-                override fun onResponse(call: Call<Activity>, response: Response<Activity>) {
-                    if (response.body() != null) {
-                        bind(view, response.body()!!)
-                    }
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
+                    updateData(view)
                 }
             })
         }
+    }
+
+    fun updateData(view: View) {
+        activityService.getActivity(activityId!!).enqueue(object : Callback<Activity> {
+            override fun onFailure(call: Call<Activity>, t: Throwable) {
+                Toast.makeText(context, "Failed to fetch activity details", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            override fun onResponse(call: Call<Activity>, response: Response<Activity>) {
+                if (response.body() != null) {
+                    bind(view, response.body()!!)
+                }
+            }
+        })
     }
 
     fun bind(view: View, activity: Activity) {
@@ -88,6 +109,14 @@ class ActivityDetailFragment : Fragment() {
                     R.color.green
                 )
             )
+        }
+
+        if (activity.participants!!.any { it.username == credentialsStore.username }) {
+            view.inviteButton.isEnabled = true
+            view.joinButton.isEnabled = false // TODO change button to "LEAVE"
+        } else {
+            view.joinButton.isEnabled = true
+            view.inviteButton.isEnabled = false
         }
 
         val owner = activity.participants!!.find { it.role == "OWNER" }

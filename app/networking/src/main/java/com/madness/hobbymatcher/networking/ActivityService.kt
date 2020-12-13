@@ -27,7 +27,7 @@ interface ActivityService {
     ): Call<ResponseBody>
 
     @POST("activities/{id}/join")
-    fun addUserToActivity(
+    fun joinActivity(
         @Path("id") id: Int
     ): Call<ResponseBody>
 

@@ -9,6 +9,7 @@ class CredentialsStore(context: Context) {
     private companion object {
         const val SECURE_PREFS_KEY = "cred_secure_prefs"
         const val TOKEN_KEY = "token_key"
+        const val USERNAME_KEY = "username_key"
     }
 
     private var preferences: SharedPreferences
@@ -37,6 +38,17 @@ class CredentialsStore(context: Context) {
             }
         }
 
+    var username: String
+        get() = preferences.getString(USERNAME_KEY, "").orEmpty()
+        set(value) = with(preferences.edit()) {
+            if (value.isNotEmpty()) {
+                putString(USERNAME_KEY, value)
+                apply()
+            } else {
+                eraseUsername()
+            }
+        }
+
     val hasToken: Boolean
         get() = preferences.contains(TOKEN_KEY)
 
@@ -47,4 +59,10 @@ class CredentialsStore(context: Context) {
         }
     }
 
+    fun eraseUsername() {
+        with(preferences.edit()) {
+            remove(USERNAME_KEY)
+            apply()
+        }
+    }
 }

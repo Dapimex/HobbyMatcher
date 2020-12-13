@@ -40,7 +40,7 @@
             android:textAlignment="center"
             android:textColor="@color/purple_200"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/participantsTextView"
+            app:layout_constraintBottom_toTopOf="@+id/peopleTextView"
             app:layout_constraintEnd_toStartOf="@+id/isPublicTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/locationTextView" />
@@ -64,6 +64,8 @@
             android:layout_height="56dp"
             android:layout_marginTop="20dp"
             android:text="Location"
+            android:textColor="@color/primaryTextColor"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
 
@@ -72,6 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="01/01/2020 15:15"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/locationTextView"
             app:layout_constraintTop_toTopOf="@+id/locationTextView" />
@@ -82,16 +85,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Less than 1 hour"
+            android:textColor="@color/primaryTextColor"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/locationTextView"
             app:layout_constraintTop_toBottomOf="@id/startTimeTextView" />
 
         <TextView
-            android:id="@+id/participantsTextView"
+            android:id="@+id/peopleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="92dp"
-            android:text="Participants"
+            android:text="People"
             android:textColor="@color/primaryTextColor"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@+id/locationTextView"
@@ -101,33 +106,70 @@
             android:id="@+id/ownerTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
             android:text="OWNER"
             android:textColor="@color/teal_200"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/participantsRecyclerView"
+            app:layout_constraintBottom_toTopOf="@+id/ownerUsernameTextView"
+            app:layout_constraintEnd_toStartOf="@id/participantTextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/participantsTextView" />
+            app:layout_constraintTop_toBottomOf="@id/peopleTextView" />
 
+
+        <TextView
+            android:id="@+id/participantTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PARTICIPANTS"
+            android:textColor="@color/teal_200"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/participantsRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ownerTextView"
+            app:layout_constraintTop_toBottomOf="@id/peopleTextView" />
 
         <TextView
             android:id="@+id/ownerUsernameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="username"
-            app:layout_constraintEnd_toStartOf="@id/participantsRecyclerView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ownerTextView" />
+            app:layout_constraintEnd_toEndOf="@+id/ownerTextView"
+            app:layout_constraintStart_toStartOf="@+id/ownerTextView"
+            app:layout_constraintTop_toTopOf="@+id/participantsRecyclerView" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/participantsRecyclerView"
-            android:layout_width="220dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginTop="56dp"
             android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/participantTextView"
+            app:layout_constraintStart_toStartOf="@+id/participantTextView"
+            app:layout_constraintTop_toBottomOf="@id/peopleTextView">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/joinButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Join"
+            android:enabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/inviteButton"
+            app:layout_constraintTop_toBottomOf="@id/participantsRecyclerView"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/inviteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invite"
+            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/participantsTextView" />
+            app:layout_constraintStart_toEndOf="@+id/joinButton"
+            app:layout_constraintTop_toTopOf="@+id/joinButton" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
