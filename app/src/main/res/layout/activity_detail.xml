@@ -150,25 +150,24 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <Button
-            android:id="@+id/joinButton"
+            android:id="@+id/joinLeaveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Join"
-            android:enabled="false"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/inviteButton"
-            app:layout_constraintTop_toBottomOf="@id/participantsRecyclerView"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/participantsRecyclerView" />
 
         <Button
             android:id="@+id/inviteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Invite"
             android:enabled="false"
+            android:text="Invite"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/joinButton"
-            app:layout_constraintTop_toTopOf="@+id/joinButton" />
+            app:layout_constraintStart_toEndOf="@+id/joinLeaveButton"
+            app:layout_constraintTop_toTopOf="@+id/joinLeaveButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

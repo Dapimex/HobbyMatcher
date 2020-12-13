@@ -24,13 +24,13 @@
         android:id="@+id/toJoinTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="196dp"
         android:text="TO JOIN"
         android:textColor="@color/primaryColor"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameAutoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/inviteTextView" />
 
     <Button
         android:id="@+id/sendInvitationButton"
@@ -46,10 +46,12 @@
         android:id="@+id/activityNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="102dp"
+        android:layout_marginStart="44dp"
+        android:maxEms="8"
+        android:singleLine="false"
         android:text="Activity name"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toJoinTextView"
         app:layout_constraintStart_toEndOf="@+id/toJoinTextView"
         app:layout_constraintTop_toTopOf="@+id/toJoinTextView" />
 
@@ -57,8 +59,8 @@
         android:id="@+id/usernameAutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
         android:hint="@string/hint_username"
+        app:layout_constraintBottom_toTopOf="@id/toJoinTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inviteTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
