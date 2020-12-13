@@ -23,5 +23,5 @@ interface InvitationService {
     @POST("invitations/create")
     fun createInvitation(
         @Body invitation: Invitation
-    )
+    ): Call<ResponseBody>
 }

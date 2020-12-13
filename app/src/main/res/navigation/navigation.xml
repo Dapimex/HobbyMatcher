@@ -35,5 +35,18 @@
     <fragment
         android:id="@+id/activityDetailFragment"
         android:name="com.madness.hobbymatcher.fragment.ActivityDetailFragment"
-        android:label="ActivityDetailFragment" />
+        android:label="ActivityDetailFragment">
+        <action
+            android:id="@+id/action_activityDetailFragment_to_invitationsFragment"
+            app:destination="@id/invitationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/invitationsFragment"
+        android:name="com.madness.hobbymatcher.fragment.InvitationsFragment"
+        android:label="fragment_invitations"
+        tools:layout="@layout/fragment_invitations">
+        <argument
+            android:name="activity"
+            app:argType="com.madness.hobbymatcher.networking.response.Activity" />
+    </fragment>
 </navigation>
