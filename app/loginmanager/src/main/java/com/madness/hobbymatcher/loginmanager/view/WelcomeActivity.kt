@@ -55,6 +55,7 @@ class WelcomeActivity : AppCompatActivity() {
                         layout.buttonGoBack.visibility = View.VISIBLE
                         setViewsEnabled(true, layout.editPasswordRepeat, layout.buttonGoBack)
                         button.setOnClickListener(this::onRegisterButtonClick)
+                        button.text = getString(R.string.button_register)
                     }
                     LoginResult.INVALID -> {
                         snackbarMessage(
@@ -129,6 +130,7 @@ class WelcomeActivity : AppCompatActivity() {
             setViewsEnabled(true, editUsername, editPassword)
         }
 
+        layout.buttonLetsGo.text = getString(R.string.button_lets_go)
         layout.buttonLetsGo.setOnClickListener(this::onLetsGoButtonClick)
     }
 
