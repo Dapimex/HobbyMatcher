@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +35,8 @@ class ActivitiesAdapter(
 
         fun bind(activity: Activity, isMyActivity: Boolean) {
             if (isMyActivity) {
-                holder.setBackgroundResource(R.drawable.custom_border)
+
+                holder.backgroundTintList = ContextCompat.getColorStateList(view.context, R.color.lightGreenColor)
                 deleteActivityButton.setOnClickListener {
                     activity.id?.let { deleteFunction.invoke(it) }
                 }
