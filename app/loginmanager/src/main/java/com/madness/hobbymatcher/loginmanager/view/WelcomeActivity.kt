@@ -52,7 +52,8 @@ class WelcomeActivity : AppCompatActivity() {
                     LoginResult.SUCCESS -> finish()
                     LoginResult.NOT_EXIST -> {
                         layout.editPasswordRepeat.visibility = View.VISIBLE
-                        setViewsEnabled(true, layout.editPasswordRepeat)
+                        layout.buttonGoBack.visibility = View.VISIBLE
+                        setViewsEnabled(true, layout.editPasswordRepeat, layout.buttonGoBack)
                         button.setOnClickListener(this::onRegisterButtonClick)
                     }
                     LoginResult.INVALID -> {
@@ -113,6 +114,22 @@ class WelcomeActivity : AppCompatActivity() {
                 editPasswordRepeat.error = getString(R.string.err_passwords_dont_match)
             }
         }
+    }
+
+    fun onGoBackButtonClick(button: View) {
+        button as Button
+        button.visibility = View.INVISIBLE
+        setViewsEnabled(false, button)
+
+        with(layout) {
+            editPasswordRepeat.visibility = View.INVISIBLE
+            setViewsEnabled(false, editPasswordRepeat)
+            editPasswordRepeat.text.clear()
+
+            setViewsEnabled(true, editUsername, editPassword)
+        }
+
+        layout.buttonLetsGo.setOnClickListener(this::onLetsGoButtonClick)
     }
 
 }

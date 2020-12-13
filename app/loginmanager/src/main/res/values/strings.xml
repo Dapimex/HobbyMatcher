@@ -15,4 +15,6 @@
     <string name="text_hey_there">Hey there!</string>
     <string name="text_hobbymatcher_desc">HobbyMatcher is a service to find something interesting to do with people around you</string>
     <string name="button_lets_go">Let\'s go</string>
+    <string name="button_go_back">Go Back</string>
+    <string name="desc_people_comm">Image with people communicating</string>
 </resources>
