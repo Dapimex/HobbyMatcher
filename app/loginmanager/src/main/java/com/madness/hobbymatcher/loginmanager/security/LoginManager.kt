@@ -24,7 +24,7 @@ class LoginManager
     val credentials: CredentialsStore
 ) {
 
-    val loggedIn = credentials.hasToken
+    val loggedIn get() = credentials.hasToken
 
     fun startSignIn(username: String, password: String): LiveData<LoginResult> {
         val success = MutableLiveData<LoginResult>()
