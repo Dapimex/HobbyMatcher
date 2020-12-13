@@ -1,6 +1,7 @@
 package com.madness.hobbymatcher.di
 
 import com.madness.hobbymatcher.HobbyMatcherApplication
+import com.madness.hobbymatcher.MainActivity
 import com.madness.hobbymatcher.adapter.InviteActivityAdapter
 import com.madness.hobbymatcher.fragment.*
 
@@ -37,4 +38,6 @@ interface ApplicationComponent {
     fun inject(activityDetailFragment: ActivityDetailFragment)
 
     fun inject(invitationsFragment: InvitationsFragment)
+
+    fun inject(mainActivity: MainActivity)
 }

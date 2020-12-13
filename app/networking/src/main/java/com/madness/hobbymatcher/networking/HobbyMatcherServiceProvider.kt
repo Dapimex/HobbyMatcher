@@ -6,6 +6,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+@Deprecated("HobbyMatcherServiceProvider is deprecated", ReplaceWith("NetworkingModule"))
 class HobbyMatcherServiceProvider {
     companion object {
         private val okHttpClient = OkHttpClient.Builder().apply {

@@ -25,4 +25,6 @@
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
     <string name="delete">Delete</string>
+    <string name="text_no_internet">No internet connection</string>
+    <string name="text_cannot_operate_offline">Unfortunately, this app cannot work without internet connection.</string>
 </resources>
