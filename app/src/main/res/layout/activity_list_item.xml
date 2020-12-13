@@ -12,12 +12,13 @@
 
     <TextView
         android:id="@+id/activityNameListItemTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:layout_marginVertical="@dimen/form_vertical_margin"
         android:layout_marginHorizontal="@dimen/form_horizontal_margin"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/activityListItemDeleteButton"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp" />
 
