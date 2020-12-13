@@ -24,7 +24,7 @@ class WelcomeActivity : AppCompatActivity() {
     private val layout get() = _layout!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this) // TODO Injector factory
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         _layout = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(layout.root)

@@ -1,9 +1,8 @@
 package com.madness.hobbymatcher.di
 
 import com.madness.hobbymatcher.HobbyMatcherApplication
-import com.madness.hobbymatcher.fragment.ActivityDetailFragment
 import com.madness.hobbymatcher.adapter.InviteActivityAdapter
-
+import com.madness.hobbymatcher.fragment.ActivityDetailFragment
 import com.madness.hobbymatcher.fragment.AddActivityFragment
 import com.madness.hobbymatcher.fragment.HomeFragment
 import com.madness.hobbymatcher.fragment.ProfileFragment
@@ -22,8 +21,9 @@ import javax.inject.Singleton
         NetworkingModule::class,
         LoginModule::class,
         AndroidInjectionModule::class,
-        LoginActivityModule::class,
-        RegistrationActivityModule::class
+        LoginActivityModule::class, // TODO Remove unused components
+        RegistrationActivityModule::class,
+        WelcomeActivityModule::class
     ]
 )
 interface ApplicationComponent {
