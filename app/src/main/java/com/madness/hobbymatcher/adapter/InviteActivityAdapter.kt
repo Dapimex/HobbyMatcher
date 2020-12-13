@@ -30,6 +30,15 @@ class InviteActivityAdapter
 
     private val ITEM_VIEW_TYPE_ACTIVITY = 0
     private val ITEM_VIEW_TYPE_INVITE = 1
+    private val ITEM_VIEW_TYPE_TITLE = 2
+
+    class TitleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val textView: TextView = view.findViewById(R.id.titleNameItemTextView)
+
+        fun bind(text: String) {
+            textView.text = text
+        }
+    }
 
     class ActivityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val frontSdf = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
@@ -126,6 +135,7 @@ class InviteActivityAdapter
         return when(activities[position]) {
             is InviteActivity.InviteType -> ITEM_VIEW_TYPE_INVITE
             is InviteActivity.ActivityType -> ITEM_VIEW_TYPE_ACTIVITY
+            is InviteActivity.TitleType -> ITEM_VIEW_TYPE_TITLE
         }
     }
 
@@ -133,6 +143,7 @@ class InviteActivityAdapter
         ITEM_VIEW_TYPE_INVITE -> InviteViewHolder(parent.inflate(
                 R.layout.invite_list_item)) { activity: InviteActivity -> deleteActivity(activity) }
         ITEM_VIEW_TYPE_ACTIVITY -> ActivityViewHolder(parent.inflate(R.layout.activity_list_item))
+        ITEM_VIEW_TYPE_TITLE -> TitleViewHolder(parent.inflate(R.layout.title_list_item))
         else -> ActivityViewHolder(parent.inflate(R.layout.activity_list_item))
     }
 
@@ -145,6 +156,7 @@ class InviteActivityAdapter
         when (val item = activities[holder.adapterPosition]) {
             is InviteActivity.InviteType -> (holder as InviteViewHolder).bind(item.invite)
             is InviteActivity.ActivityType -> (holder as ActivityViewHolder).bind(item.activity)
+            is InviteActivity.TitleType -> (holder as TitleViewHolder).bind(item.text)
         }
     }
 
