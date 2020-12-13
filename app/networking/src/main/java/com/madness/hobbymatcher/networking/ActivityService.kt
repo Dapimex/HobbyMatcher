@@ -31,6 +31,11 @@ interface ActivityService {
         @Path("id") id: Int
     ): Call<ResponseBody>
 
+    @POST("activities/{id}/leave")
+    fun leaveActivity(
+        @Path("id") id: Int
+    ): Call<ResponseBody>
+
     @GET("activities/created")
     fun getMyActivities(): Call<Activities>
 

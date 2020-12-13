@@ -54,21 +54,6 @@ class ActivityDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         updateData(view)
-
-        view.joinButton.setOnClickListener {
-            activityService.joinActivity(activityId!!).enqueue(object : Callback<ResponseBody> {
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Toast.makeText(context, "Failed to join activity", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
-                ) {
-                    updateData(view)
-                }
-            })
-        }
     }
 
     fun updateData(view: View) {
@@ -114,10 +99,48 @@ class ActivityDetailFragment : Fragment() {
 
         if (activity.participants!!.any { it.username == credentialsStore.username }) {
             view.inviteButton.isEnabled = true
-            view.joinButton.isEnabled = false // TODO change button to "LEAVE"
+            if (activity.participants!!.find { it.username == credentialsStore.username }!!.role == "OWNER") {
+                view.joinLeaveButton.isEnabled = false
+            } else {
+                view.joinLeaveButton.text = "LEAVE"
+                view.joinLeaveButton.setOnClickListener {
+                    activityService.leaveActivity(activityId!!)
+                        .enqueue(object : Callback<ResponseBody> {
+                            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                                Toast.makeText(
+                                    context,
+                                    "Failed to leave activity",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                            override fun onResponse(
+                                call: Call<ResponseBody>,
+                                response: Response<ResponseBody>
+                            ) {
+                                updateData(view)
+                            }
+                        })
+                }
+            }
         } else {
-            view.joinButton.isEnabled = true
             view.inviteButton.isEnabled = false
+            view.joinLeaveButton.text = "JOIN"
+            view.joinLeaveButton.setOnClickListener {
+                activityService.joinActivity(activityId!!).enqueue(object : Callback<ResponseBody> {
+                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                        Toast.makeText(context, "Failed to join activity", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<ResponseBody>,
+                        response: Response<ResponseBody>
+                    ) {
+                        updateData(view)
+                    }
+                })
+            }
         }
 
         val owner = activity.participants!!.find { it.role == "OWNER" }
@@ -132,7 +155,10 @@ class ActivityDetailFragment : Fragment() {
 
 
         view.inviteButton.setOnClickListener {
-            val action = ActivityDetailFragmentDirections.actionActivityDetailFragmentToInvitationsFragment(activity)
+            val action =
+                ActivityDetailFragmentDirections.actionActivityDetailFragmentToInvitationsFragment(
+                    activity
+                )
             view.findNavController().navigate(action)
         }
     }

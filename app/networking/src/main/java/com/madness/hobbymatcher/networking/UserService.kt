@@ -9,8 +9,11 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface UserService {
-    @GET("users")
-    fun getAllUsersWithUsernameLike(@Query("pattern") pattern: String): Call<UsersResponse>
+    @GET("users/not_in_activity/{id}")
+    fun getAllUsersNotInActivityWithUsernameLike(
+        @Path("id") activityId: Int,
+        @Query("pattern") pattern: String
+    ): Call<UsersResponse>
 
     @GET("users/{id}")
     fun getUser(@Path("id") id: Int): Call<User>
