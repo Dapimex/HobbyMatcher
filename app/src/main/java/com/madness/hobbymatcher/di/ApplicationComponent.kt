@@ -5,8 +5,7 @@ import com.madness.hobbymatcher.adapter.InviteActivityAdapter
 import com.madness.hobbymatcher.fragment.*
 
 import com.madness.hobbymatcher.loginmanager.di.LoginModule
-import com.madness.hobbymatcher.loginmanager.view.LoginActivity
-import com.madness.hobbymatcher.loginmanager.view.RegistrationActivity
+import com.madness.hobbymatcher.loginmanager.view.WelcomeActivity
 import com.madness.hobbymatcher.networking.di.NetworkingModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -19,8 +18,7 @@ import javax.inject.Singleton
         NetworkingModule::class,
         LoginModule::class,
         AndroidInjectionModule::class,
-        LoginActivityModule::class,
-        RegistrationActivityModule::class
+        WelcomeActivityModule::class
     ]
 )
 interface ApplicationComponent {
@@ -34,9 +32,7 @@ interface ApplicationComponent {
 
     fun inject(homeFragment: HomeFragment)
 
-    fun inject(loginActivity: LoginActivity)
-
-    fun inject(registrationActivity: RegistrationActivity)
+    fun inject(welcomeActivity: WelcomeActivity)
 
     fun inject(activityDetailFragment: ActivityDetailFragment)
 
