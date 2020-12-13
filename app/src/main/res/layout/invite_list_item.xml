@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/invitesListItemHolder"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:drawable/dialog_holo_light_frame"
-    android:layout_marginVertical="2dp">
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="8dp">
 
     <TextView
         android:id="@+id/inviteSenderListItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/form_vertical_margin"
-        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -22,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/form_vertical_margin"
-        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/inviteSenderListItemTextView"
@@ -33,7 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/form_vertical_margin"
-        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inviteActivityNameListItemTextView"
         app:layout_constraintBottom_toTopOf="@id/inviteListItemAcceptButton"
@@ -46,8 +44,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/green"
         android:text="@string/accept"
+        app:layout_constraintTop_toBottomOf="@id/inviteActivityMetaListItemTextView"
         android:layout_marginTop="@dimen/form_vertical_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/inviteListItemDeclineButton"
         />
@@ -58,8 +56,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/red"
         android:text="@string/decline"
+        app:layout_constraintTop_toBottomOf="@id/inviteActivityMetaListItemTextView"
         android:layout_marginTop="@dimen/form_vertical_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/inviteListItemAcceptButton"/>
 

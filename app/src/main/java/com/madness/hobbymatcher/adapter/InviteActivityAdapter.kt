@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -67,7 +69,7 @@ class InviteActivityAdapter
         }
     }
 
-    class InviteViewHolder(view: View, private val deleteFunction: (InviteActivity) -> Unit) : RecyclerView.ViewHolder(view) {
+    class InviteViewHolder(val view: View, private val deleteFunction: (InviteActivity) -> Unit) : RecyclerView.ViewHolder(view) {
 
         @Inject
         lateinit var invitationService: InvitationService
@@ -80,8 +82,11 @@ class InviteActivityAdapter
         private val senderTextView: TextView = view.findViewById(R.id.inviteSenderListItemTextView)
         private val acceptButton: Button = view.findViewById(R.id.inviteListItemAcceptButton)
         private val declineButton: Button = view.findViewById(R.id.inviteListItemDeclineButton)
+        private val holder: ConstraintLayout = view.findViewById(R.id.invitesListItemHolder)
 
         fun bind(invite: Invitation) {
+            holder.backgroundTintList = ContextCompat.getColorStateList(view.context, R.color.lightBlueColor)
+            holder.background = null
             (HobbyMatcherApplication.APPLICATION as HobbyMatcherApplication).appComponent.inject(this)
             activityNameTextView.text = invite.activity?.name
             var startTime = ""

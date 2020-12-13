@@ -20,6 +20,6 @@
     <color name="green">#33AA33</color>
     <color name="red">#AA3333</color>
     <color name="lightGreenColor">#75f5aa</color>
-    <color name="lightBlueColor">#75f3f5</color>
+    <color name="lightBlueColor">#bdf9fa</color>
     <color name="lightRedColor">#f57575</color>
 </resources>
