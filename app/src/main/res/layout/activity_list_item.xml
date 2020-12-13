@@ -5,68 +5,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
-    android:layout_marginVertical="2dp">
+    android:padding="12dp"
+    android:background="@android:drawable/dialog_holo_light_frame"
+    android:layout_marginVertical="2dp"
+    >
 
-    <LinearLayout
-        android:id="@+id/linearItemHolder"
+    <TextView
+        android:id="@+id/activityNameListItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/activityListItemDeleteButton"
+        android:textColor="@color/black"
+        android:layout_marginVertical="@dimen/form_vertical_margin"
+        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp" />
 
-        <LinearLayout
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/activityLocationListItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/form_vertical_margin"
+        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
+        app:layout_constraintTop_toBottomOf="@id/activityNameListItemTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
-            <TextView
-                android:id="@+id/activityNameListItemTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="name"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/activityStartTimeListItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/form_vertical_margin"
+        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
+        app:layout_constraintTop_toBottomOf="@id/activityLocationListItemTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
-            <TextView
-                android:id="@+id/activityDescriptionListItemTextView"
-                android:layout_marginLeft="24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="description"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/activityLocationListItemTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="location"/>
-
-            <TextView
-                android:id="@+id/activityStartTimeListItemTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="start time"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
     <ImageButton
         android:id="@+id/activityListItemDeleteButton"
         android:layout_width="40dp"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:background="@null"
+        android:tint="@color/red"
+        android:layout_marginVertical="@dimen/form_vertical_margin"
+        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/linearItemHolder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/ic_baseline_delete_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

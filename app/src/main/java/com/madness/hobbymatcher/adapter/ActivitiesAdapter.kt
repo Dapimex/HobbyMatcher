@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -24,8 +25,6 @@ class ActivitiesAdapter(
     class ActivityViewHolder(val view: View, private val deleteFunction: (Int) -> Unit) :
         RecyclerView.ViewHolder(view) {
         private val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
-        private val descriptionTextView: TextView =
-            view.findViewById(R.id.activityDescriptionListItemTextView)
         private val startTimeTextView: TextView =
             view.findViewById(R.id.activityStartTimeListItemTextView)
         private val locationTextView: TextView =
@@ -36,7 +35,8 @@ class ActivitiesAdapter(
 
         fun bind(activity: Activity, isMyActivity: Boolean) {
             if (isMyActivity) {
-                holder.setBackgroundResource(R.drawable.custom_border)
+
+                holder.backgroundTintList = ContextCompat.getColorStateList(view.context, R.color.lightGreenColor)
                 deleteActivityButton.setOnClickListener {
                     activity.id?.let { deleteFunction.invoke(it) }
                 }
@@ -47,7 +47,6 @@ class ActivitiesAdapter(
                 deleteActivityButton.isClickable = false
             }
             nameTextView.text = activity.name
-            descriptionTextView.text = activity.description
             startTimeTextView.text = activity.startTime
             locationTextView.text = activity.location
 

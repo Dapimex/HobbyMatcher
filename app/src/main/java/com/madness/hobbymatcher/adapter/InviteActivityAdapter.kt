@@ -3,7 +3,6 @@ package com.madness.hobbymatcher.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -37,14 +36,12 @@ class InviteActivityAdapter
         private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
         private val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
-        private val descriptionTextView: TextView = view.findViewById(R.id.activityDescriptionListItemTextView)
         private val startTimeTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
         private val locationTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
         private val deleteButton: ImageButton = view.findViewById(R.id.activityListItemDeleteButton)
 
         fun bind(activity: Activity) {
             nameTextView.text = activity.name
-            descriptionTextView.text = activity.description
             if (activity.startTime != null) {
                 startTimeTextView.text = frontSdf.format(backSdf.parse(activity.startTime!!)!!)
             }
@@ -69,24 +66,21 @@ class InviteActivityAdapter
         private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
         private val activityNameTextView: TextView = view.findViewById(R.id.inviteActivityNameListItemTextView)
-        private val activityDescriptionTextView: TextView = view.findViewById(R.id.inviteActivityDescriptionListItemTextView)
         private val activityStartTimeTextView: TextView = view.findViewById(R.id.inviteActivityStartTimeListItemTextView)
         private val activityLocationTextView: TextView = view.findViewById(R.id.inviteActivityLocationListItemTextView)
         private val senderTextView: TextView = view.findViewById(R.id.inviteSenderListItemTextView)
-        private val timeTextView: TextView = view.findViewById(R.id.inviteTimeListItemTextView)
         private val acceptButton: ImageButton = view.findViewById(R.id.inviteListItemAcceptButton)
         private val declineButton: ImageButton = view.findViewById(R.id.inviteListItemDeclineButton)
 
         fun bind(invite: Invitation) {
             (HobbyMatcherApplication.APPLICATION as HobbyMatcherApplication).appComponent.inject(this)
             activityNameTextView.text = invite.activity?.name
-            activityDescriptionTextView.text = invite.activity?.description
             if (invite.activity?.startTime != null) {
                 activityStartTimeTextView.text = frontSdf.format(backSdf.parse(invite.activity?.startTime!!)!!)
             }
             activityLocationTextView.text = invite.activity?.location
-            senderTextView.text = invite.senderUsername
-            timeTextView.text = frontSdf.format(backSdf.parse(invite.creationTime!!)!!)
+            val createTime = frontSdf.format(backSdf.parse(invite.creationTime!!)!!)
+            senderTextView.text = "${createTime}: ${invite.senderUsername} invited you"
 
             acceptButton.setOnClickListener {
                 invitationService.acceptInvitation(invite.id!!).enqueue(object: Callback<ResponseBody> {
