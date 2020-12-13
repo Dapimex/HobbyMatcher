@@ -8,5 +8,6 @@ data class Invitation(
     @SerializedName("id") val id: Int? = null,
     @SerializedName("sender_id") val senderId: Int? = null,
     @SerializedName("sender_username") val senderUsername: String? = "",
-    @SerializedName("target_user_id") val targetUserId: Int? = null
+    @SerializedName("target_user_id") val targetUserId: Int? = null,
+    @SerializedName("activity_id") val activityId: Int? = null
 )

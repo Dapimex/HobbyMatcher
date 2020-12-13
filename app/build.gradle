@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -49,6 +51,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0-alpha04"
+
     // Network
     implementation "com.squareup.okhttp3:okhttp:4.9.0" // HTTP Client
     implementation "com.google.code.gson:gson:2.8.6" // Json Parser
@@ -59,6 +63,7 @@ dependencies {
 
     // Support for connection parser to retrofit
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // DI
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

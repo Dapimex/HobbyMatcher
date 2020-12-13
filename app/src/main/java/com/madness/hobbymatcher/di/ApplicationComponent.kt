@@ -1,12 +1,9 @@
 package com.madness.hobbymatcher.di
 
 import com.madness.hobbymatcher.HobbyMatcherApplication
-import com.madness.hobbymatcher.fragment.ActivityDetailFragment
 import com.madness.hobbymatcher.adapter.InviteActivityAdapter
+import com.madness.hobbymatcher.fragment.*
 
-import com.madness.hobbymatcher.fragment.AddActivityFragment
-import com.madness.hobbymatcher.fragment.HomeFragment
-import com.madness.hobbymatcher.fragment.ProfileFragment
 import com.madness.hobbymatcher.loginmanager.di.LoginModule
 import com.madness.hobbymatcher.loginmanager.view.LoginActivity
 import com.madness.hobbymatcher.loginmanager.view.RegistrationActivity
@@ -42,4 +39,6 @@ interface ApplicationComponent {
     fun inject(registrationActivity: RegistrationActivity)
 
     fun inject(activityDetailFragment: ActivityDetailFragment)
+
+    fun inject(invitationsFragment: InvitationsFragment)
 }
