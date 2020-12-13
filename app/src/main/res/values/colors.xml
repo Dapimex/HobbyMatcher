@@ -18,4 +18,5 @@
     <color name="secondaryTextColor">#000000</color>
 
     <color name="green">#33AA33</color>
+    <color name="red">#AA3333</color>
 </resources>
