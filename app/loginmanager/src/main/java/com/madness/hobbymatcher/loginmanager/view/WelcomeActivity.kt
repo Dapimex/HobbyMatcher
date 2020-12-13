@@ -50,10 +50,16 @@ class WelcomeActivity : AppCompatActivity() {
             signInResult.observe(this, { loginResult ->
                 when (loginResult) {
                     LoginResult.SUCCESS -> finish()
-                    LoginResult.INVALID -> {
+                    LoginResult.NOT_EXIST -> {
                         layout.editPasswordRepeat.visibility = View.VISIBLE
                         setViewsEnabled(true, layout.editPasswordRepeat)
                         button.setOnClickListener(this::onRegisterButtonClick)
+                    }
+                    LoginResult.INVALID -> {
+                        snackbarMessage(
+                            layout.root, getString(R.string.msg_invalid_cred)
+                        )
+                        setViewsEnabled(true, button, editUsername, editPassword)
                     }
                     LoginResult.NO_INTERNET -> {
                         snackbarMessage(
