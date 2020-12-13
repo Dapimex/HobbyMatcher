@@ -36,10 +36,8 @@ class ActivitiesAdapter(
     class ActivityViewHolder(val view: View, private val deleteFunction: (Int) -> Unit) :
         RecyclerView.ViewHolder(view) {
         private val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
-        private val startTimeTextView: TextView =
-            view.findViewById(R.id.activityStartTimeListItemTextView)
-        private val locationTextView: TextView =
-            view.findViewById(R.id.activityStartTimeListItemTextView)
+        private val metaTextView: TextView =
+            view.findViewById(R.id.activityMetaListItemTextView)
         private val deleteActivityButton: ImageButton =
             view.findViewById(R.id.activityListItemDeleteButton)
         private val holder: ConstraintLayout = view.findViewById(R.id.listItemHolder)
@@ -58,8 +56,7 @@ class ActivitiesAdapter(
                 deleteActivityButton.isClickable = false
             }
             nameTextView.text = activity.name
-            startTimeTextView.text = activity.startTime
-            locationTextView.text = activity.location
+            metaTextView.text = "${activity.startTime} | ${activity.location}"
 
 
             view.setOnClickListener {

@@ -22,4 +22,7 @@
     <string name="add_activity_place_label">Where will it happen?</string>
     <string name="add_activity_place_placeholder">Location</string>
     <string name="incorrect_date">Enter time in the pattern dd/mm/yyyy hh:mm</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="delete">Delete</string>
 </resources>
