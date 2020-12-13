@@ -1,7 +1,10 @@
 package com.madness.hobbymatcher.networking.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Activity(
     @SerializedName("id") val id: Int? = null,
     @SerializedName("name") val name: String,
@@ -12,4 +15,4 @@ data class Activity(
     @SerializedName("is_public") val isPublic: Boolean? = null,
     @SerializedName("type") val type: String? = "",
     @SerializedName("participants") val participants: List<User>? = emptyList(),
-)
+) : Parcelable

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.madness.hobbymatcher.HobbyMatcherApplication
 import com.madness.hobbymatcher.R
@@ -128,6 +129,12 @@ class ActivityDetailFragment : Fragment() {
             .map { user -> user.username })
 
         view.participantsRecyclerView.layoutManager = LinearLayoutManager(context)
+
+
+        view.inviteButton.setOnClickListener {
+            val action = ActivityDetailFragmentDirections.actionActivityDetailFragmentToInvitationsFragment(activity)
+            view.findNavController().navigate(action)
+        }
     }
 
 }
