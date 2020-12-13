@@ -8,13 +8,14 @@ import com.madness.hobbymatcher.networking.interceptors.CredentialsStore
 import com.madness.hobbymatcher.networking.request.SignInRequest
 import com.madness.hobbymatcher.networking.request.SignUpRequest
 import com.madness.hobbymatcher.networking.response.AuthResponse
+import com.madness.hobbymatcher.networking.response.ServiceError
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
 enum class LoginResult {
-    SUCCESS, INVALID, NO_INTERNET
+    SUCCESS, INVALID, NOT_EXIST, NO_INTERNET
 }
 
 class LoginManager
@@ -24,7 +25,7 @@ class LoginManager
     val credentials: CredentialsStore
 ) {
 
-    val loggedIn = credentials.hasToken
+    val loggedIn get() = credentials.hasToken
 
     fun startSignIn(username: String, password: String): LiveData<LoginResult> {
         val success = MutableLiveData<LoginResult>()
@@ -40,7 +41,12 @@ class LoginManager
                         credentials.token = signIn?.accessToken.orEmpty()
                         success.postValue(LoginResult.SUCCESS)
                     } else {
-                        success.postValue(LoginResult.INVALID)
+                        val errorResponse = ServiceError.from(response.errorBody())
+                        if (errorResponse.message == "wrong password") {
+                            success.postValue(LoginResult.INVALID)
+                        } else {
+                            success.postValue(LoginResult.NOT_EXIST)
+                        }
                     }
                 }
 

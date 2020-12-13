@@ -3,14 +3,10 @@
     package="com.madness.hobbymatcher.loginmanager">
 
     <application>
-        <activity android:name=".view.RegistrationActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-        />
         <activity
-            android:name=".view.LoginActivity"
-            android:theme="@style/Theme.HobbyMatcher"
+            android:name=".view.WelcomeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-        />
+            android:theme="@style/Theme.HobbyMatcher" />
     </application>
 
 </manifest>

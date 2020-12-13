@@ -15,6 +15,7 @@ import com.madness.hobbymatcher.loginmanager.security.LoginResult
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
+@Deprecated("Login activity is deprecated", ReplaceWith("WelcomeActivity"))
 class LoginActivity : AppCompatActivity() {
     @Inject
     lateinit var loginManager: LoginManager

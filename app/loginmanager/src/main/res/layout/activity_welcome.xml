@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LoginActivity">
+    tools:context=".view.WelcomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,15 +16,40 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="?attr/colorBackgroundFloating"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_login_layout">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/desc_people_comm"
+                android:maxHeight="300dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_welcome_illustration" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorBackgroundFloating"
             android:gravity="bottom"
             android:orientation="vertical"
             android:padding="@dimen/padding_login_layout">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_hi_there"
+                android:gravity="center"
+                android:text="@string/text_hey_there"
                 android:textSize="@dimen/size_welcome_header" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/text_hobbymatcher_desc" />
 
         </LinearLayout>
 
@@ -38,8 +63,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_height="wrap_content"
             android:gravity="top"
             android:orientation="vertical"
             android:padding="@dimen/padding_login_layout">
@@ -60,6 +84,16 @@
                 android:hint="@string/hint_password"
                 android:inputType="textPassword" />
 
+            <EditText
+                android:id="@+id/edit_password_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="password"
+                android:enabled="false"
+                android:hint="@string/hint_repeat_password"
+                android:inputType="textPassword"
+                android:visibility="invisible" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,14 +101,26 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/button_go_back"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onLoginButtonClick"
-                    android:text="@string/button_log_in" />
+                    android:onClick="onGoBackButtonClick"
+                    android:text="@string/button_go_back"
+                    android:visibility="invisible" />
+
+                <Button
+                    android:id="@+id/button_lets_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onLetsGoButtonClick"
+                    android:text="@string/button_lets_go"
+                    tools:ignore="ButtonStyle" />
 
             </LinearLayout>
 
         </LinearLayout>
+
 
     </LinearLayout>
 
