@@ -37,6 +37,7 @@ class LoginManager
                 ) {
                     if (response.isSuccessful) {
                         val signIn = response.body()
+                        credentials.username = signIn?.username.orEmpty()
                         credentials.token = signIn?.accessToken.orEmpty()
                         success.postValue(LoginResult.SUCCESS)
                     } else {
@@ -67,6 +68,7 @@ class LoginManager
                 ) {
                     if (response.isSuccessful) {
                         val signUp = response.body()
+                        credentials.username = signUp?.username.orEmpty()
                         credentials.token = signUp?.accessToken.orEmpty()
                         success.postValue(LoginResult.SUCCESS)
                     } else {
@@ -83,6 +85,7 @@ class LoginManager
 
     fun logout() {
         credentials.eraseToken()
+        credentials.eraseUsername()
     }
 
 }

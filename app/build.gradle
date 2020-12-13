@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -48,6 +50,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigation_version"
 
     // Network
     implementation "com.squareup.okhttp3:okhttp:4.9.0" // HTTP Client

@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:name=".HobbyMatcherApplication"
         android:theme="@style/Theme.HobbyMatcher">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
