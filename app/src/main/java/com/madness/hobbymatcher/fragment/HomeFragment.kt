@@ -68,7 +68,8 @@ class HomeFragment : Fragment() {
                 response: Response<Invitations>
             ) {
                 if (response.body() != null) {
-                    (activity_list.adapter as InviteActivityAdapter).addActivities(listOf(InviteActivity.TitleType("Invitations")))
+                    if (response.body()!!.invitations.isNotEmpty())
+                        (activity_list.adapter as InviteActivityAdapter).addActivities(listOf(InviteActivity.TitleType("Invitations")))
                     (activity_list.adapter as InviteActivityAdapter).addActivities(
                             response.body()!!.invitations
                             .map {
@@ -87,7 +88,8 @@ class HomeFragment : Fragment() {
                             response: Response<Activities>
                     ) {
                         if (response.body() != null) {
-                            (activity_list.adapter as InviteActivityAdapter).addActivities(listOf(InviteActivity.TitleType("All activities")))
+                            if (response.body()!!.activities.isNotEmpty())
+                                (activity_list.adapter as InviteActivityAdapter).addActivities(listOf(InviteActivity.TitleType("All activities")))
                             (activity_list.adapter as InviteActivityAdapter).addActivities(
                                     response.body()!!.activities
                                             .map {
