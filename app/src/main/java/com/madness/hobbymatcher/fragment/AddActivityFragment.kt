@@ -59,7 +59,7 @@ class AddActivityFragment : Fragment() {
             addActivityPlaceEditText.error = getText(R.string.empty_field)
             valid = false
         }
-        if (!addActivityStartTimeEditText.text.matches(Regex("^([0-1][0-9])/([0-3][0-9])/([0-9]{4})\\s([0-1][0-9]|[2][0-3]):([0-5][0-9])\$"))) {
+        if (!addActivityStartTimeEditText.text.matches(Regex("^([0-3][0-9])/([0-1][0-9])/([0-9]{4})\\s([0-1][0-9]|[2][0-3]):([0-5][0-9])\$"))) {
             addActivityStartTimeEditText.error = getText(R.string.incorrect_date)
             valid = false
         }

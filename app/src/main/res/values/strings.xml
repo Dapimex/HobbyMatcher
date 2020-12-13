@@ -22,6 +22,9 @@
     <string name="add_activity_place_label">Where will it happen?</string>
     <string name="add_activity_place_placeholder">Location</string>
     <string name="incorrect_date">Enter time in the pattern dd/mm/yyyy hh:mm</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="delete">Delete</string>
     <string name="text_no_internet">No internet connection</string>
     <string name="text_cannot_operate_offline">Unfortunately, this app cannot work without internet connection.</string>
 </resources>

@@ -31,24 +31,31 @@ class InviteActivityAdapter
 
     private val ITEM_VIEW_TYPE_ACTIVITY = 0
     private val ITEM_VIEW_TYPE_INVITE = 1
+    private val ITEM_VIEW_TYPE_TITLE = 2
+
+    class TitleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val textView: TextView = view.findViewById(R.id.titleNameItemTextView)
+
+        fun bind(text: String) {
+            textView.text = text
+        }
+    }
 
     class ActivityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val frontSdf = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
         private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
         private val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
-        private val descriptionTextView: TextView = view.findViewById(R.id.activityDescriptionListItemTextView)
-        private val startTimeTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
-        private val locationTextView: TextView = view.findViewById(R.id.activityStartTimeListItemTextView)
+        private val metaTextView: TextView = view.findViewById(R.id.activityMetaListItemTextView)
         private val deleteButton: ImageButton = view.findViewById(R.id.activityListItemDeleteButton)
 
         fun bind(activity: Activity) {
             nameTextView.text = activity.name
-            descriptionTextView.text = activity.description
+            var startTime = ""
             if (activity.startTime != null) {
-                startTimeTextView.text = frontSdf.format(backSdf.parse(activity.startTime!!)!!)
+                startTime = frontSdf.format(backSdf.parse(activity.startTime!!)!!)
             }
-            locationTextView.text = activity.location
+            metaTextView.text = "$startTime | ${activity.location}"
             deleteButton.visibility = View.INVISIBLE
             deleteButton.isClickable = false
             itemView.setOnClickListener {
@@ -69,24 +76,21 @@ class InviteActivityAdapter
         private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
         private val activityNameTextView: TextView = view.findViewById(R.id.inviteActivityNameListItemTextView)
-        private val activityDescriptionTextView: TextView = view.findViewById(R.id.inviteActivityDescriptionListItemTextView)
-        private val activityStartTimeTextView: TextView = view.findViewById(R.id.inviteActivityStartTimeListItemTextView)
-        private val activityLocationTextView: TextView = view.findViewById(R.id.inviteActivityLocationListItemTextView)
+        private val activityMetaTextView: TextView = view.findViewById(R.id.inviteActivityMetaListItemTextView)
         private val senderTextView: TextView = view.findViewById(R.id.inviteSenderListItemTextView)
-        private val timeTextView: TextView = view.findViewById(R.id.inviteTimeListItemTextView)
-        private val acceptButton: ImageButton = view.findViewById(R.id.inviteListItemAcceptButton)
-        private val declineButton: ImageButton = view.findViewById(R.id.inviteListItemDeclineButton)
+        private val acceptButton: Button = view.findViewById(R.id.inviteListItemAcceptButton)
+        private val declineButton: Button = view.findViewById(R.id.inviteListItemDeclineButton)
 
         fun bind(invite: Invitation) {
             (HobbyMatcherApplication.APPLICATION as HobbyMatcherApplication).appComponent.inject(this)
             activityNameTextView.text = invite.activity?.name
-            activityDescriptionTextView.text = invite.activity?.description
+            var startTime = ""
             if (invite.activity?.startTime != null) {
-                activityStartTimeTextView.text = frontSdf.format(backSdf.parse(invite.activity?.startTime!!)!!)
+                startTime = frontSdf.format(backSdf.parse(invite.activity?.startTime!!)!!)
             }
-            activityLocationTextView.text = invite.activity?.location
-            senderTextView.text = invite.senderUsername
-            timeTextView.text = frontSdf.format(backSdf.parse(invite.creationTime!!)!!)
+            activityMetaTextView.text = "$startTime | ${invite.activity?.location}"
+            val createTime = frontSdf.format(backSdf.parse(invite.creationTime!!)!!)
+            senderTextView.text = "${createTime}: ${invite.senderUsername} invited you"
 
             acceptButton.setOnClickListener {
                 invitationService.acceptInvitation(invite.id!!).enqueue(object: Callback<ResponseBody> {
@@ -132,6 +136,7 @@ class InviteActivityAdapter
         return when(activities[position]) {
             is InviteActivity.InviteType -> ITEM_VIEW_TYPE_INVITE
             is InviteActivity.ActivityType -> ITEM_VIEW_TYPE_ACTIVITY
+            is InviteActivity.TitleType -> ITEM_VIEW_TYPE_TITLE
         }
     }
 
@@ -139,6 +144,7 @@ class InviteActivityAdapter
         ITEM_VIEW_TYPE_INVITE -> InviteViewHolder(parent.inflate(
                 R.layout.invite_list_item)) { activity: InviteActivity -> deleteActivity(activity) }
         ITEM_VIEW_TYPE_ACTIVITY -> ActivityViewHolder(parent.inflate(R.layout.activity_list_item))
+        ITEM_VIEW_TYPE_TITLE -> TitleViewHolder(parent.inflate(R.layout.title_list_item))
         else -> ActivityViewHolder(parent.inflate(R.layout.activity_list_item))
     }
 
@@ -151,6 +157,7 @@ class InviteActivityAdapter
         when (val item = activities[holder.adapterPosition]) {
             is InviteActivity.InviteType -> (holder as InviteViewHolder).bind(item.invite)
             is InviteActivity.ActivityType -> (holder as ActivityViewHolder).bind(item.activity)
+            is InviteActivity.TitleType -> (holder as TitleViewHolder).bind(item.text)
         }
     }
 
