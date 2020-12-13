@@ -50,8 +50,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0-alpha04"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigation_version"
 
     // Network
     implementation "com.squareup.okhttp3:okhttp:4.9.0" // HTTP Client
@@ -63,7 +62,6 @@ dependencies {
 
     // Support for connection parser to retrofit
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // DI
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
