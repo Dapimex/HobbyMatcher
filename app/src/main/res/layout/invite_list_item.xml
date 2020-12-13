@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
     android:background="@android:drawable/dialog_holo_light_frame"
     android:layout_marginVertical="2dp">
 
@@ -30,50 +29,38 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/inviteActivityLocationListItemTextView"
+        android:id="@+id/inviteActivityMetaListItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/form_vertical_margin"
+        android:layout_marginVertical="@dimen/form_vertical_margin"
         android:layout_marginHorizontal="@dimen/form_horizontal_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inviteActivityNameListItemTextView"
-        />
-
-    <TextView
-        android:id="@+id/inviteActivityStartTimeListItemTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/form_vertical_margin"
-        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inviteActivityLocationListItemTextView"
+        app:layout_constraintBottom_toTopOf="@id/inviteListItemAcceptButton"
         />
 
 
-    <ImageButton
+    <Button
         android:id="@+id/inviteListItemAcceptButton"
-        android:layout_width="40dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@null"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:tint="@color/green"
-        android:layout_marginVertical="@dimen/form_vertical_margin"
-        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
-        app:layout_constraintTop_toTopOf="@id/inviteListItemDeclineButton"
-        app:layout_constraintBottom_toBottomOf="@id/inviteListItemDeclineButton"
+        android:backgroundTint="@color/green"
+        android:text="@string/accept"
+        android:layout_marginTop="@dimen/form_vertical_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/inviteListItemDeclineButton"
         />
 
-    <ImageButton
+    <Button
         android:id="@+id/inviteListItemDeclineButton"
-        android:layout_width="60dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@null"
-        app:srcCompat="@drawable/ic_baseline_cancel_24"
-        android:layout_marginVertical="@dimen/form_vertical_margin"
-        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
-        android:tint="@color/red"
+        android:backgroundTint="@color/red"
+        android:text="@string/decline"
+        android:layout_marginTop="@dimen/form_vertical_margin"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/inviteListItemAcceptButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

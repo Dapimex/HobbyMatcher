@@ -22,25 +22,14 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/activityLocationListItemTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/form_vertical_margin"
-        android:layout_marginHorizontal="@dimen/form_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@id/activityNameListItemTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/activityStartTimeListItemTextView"
+        android:id="@+id/activityMetaListItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/form_vertical_margin"
         android:layout_marginHorizontal="@dimen/form_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@id/activityLocationListItemTextView"
+        app:layout_constraintTop_toBottomOf="@id/activityNameListItemTextView"
         app:layout_constraintStart_toStartOf="parent"
         />
-
 
     <ImageButton
         android:id="@+id/activityListItemDeleteButton"
