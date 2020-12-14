@@ -27,7 +27,7 @@ class ActivitiesAdapter(
     private val ITEM_VIEW_TYPE_ACTIVITY = 0
     private val ITEM_VIEW_TYPE_TITLE = 1
 
-    class TitleViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+    class TitleViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         private val titleTextView: TextView = view.findViewById(R.id.titleNameItemTextView)
 
         fun bind(text: String) {
@@ -50,7 +50,8 @@ class ActivitiesAdapter(
         fun bind(activity: Activity, isMyActivity: Boolean) {
             if (isMyActivity) {
 
-                holder.backgroundTintList = ContextCompat.getColorStateList(view.context, R.color.lightGreenColor)
+                holder.backgroundTintList =
+                    ContextCompat.getColorStateList(view.context, R.color.lightGreenColor)
                 deleteActivityButton.setOnClickListener {
                     activity.id?.let { deleteFunction.invoke(it) }
                 }
@@ -105,9 +106,9 @@ class ActivitiesAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is TitleViewHolder) {
             if (position == 0)
-                holder.bind("Created activities")
+                holder.bind(holder.view.context.getString(R.string.text_created_activities))
             else
-                holder.bind("Joined activities")
+                holder.bind(holder.view.context.getString(R.string.text_joined_activities))
         } else {
             if (position > myActivities.size + 1) {
                 (holder as ActivityViewHolder).bind(

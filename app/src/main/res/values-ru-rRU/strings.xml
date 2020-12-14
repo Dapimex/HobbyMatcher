@@ -6,9 +6,9 @@
     <string name="add_activity_name">Что собираетесь делать?</string>
     <string name="add_activity_name_placeholder">Название</string>
     <string name="add_activity_description">Опишите событие</string>
-    <string name="add_activity_description_placeholder">Ваше описание</string>
+    <string name="add_activity_description_placeholder">Описание</string>
     <string name="add_activity_type">Что за событие?</string>
-    <string name="add_activity_movie">Филм</string>
+    <string name="add_activity_movie">Фильм</string>
     <string name="add_activity_tabletop">Настолки</string>
     <string name="add_activity_walk">Прогулка</string>
     <string name="add_activity_other">Прочее</string>
@@ -16,7 +16,7 @@
     <string name="add_activity_start_time_label">Когда начинается?</string>
     <string name="add_activity_save_button">Создать событие</string>
     <string name="add_activity_is_public">Это открытое мероприятие</string>
-    <string name="add_activity_title">Добавьте своё событие</string>
+    <string name="add_activity_title">Новое событие</string>
     <string name="empty_field">Не должно быть пустым</string>
     <string name="add_activity_place_label">Где будет проходить?</string>
     <string name="add_activity_place_placeholder">Место</string>
@@ -39,4 +39,10 @@
     <string name="button_leave">Покинуть</string>
     <string name="text_private_activity">Закрытое</string>
     <string name="text_public_activity">Открытое</string>
+    <string name="text_all_activities">Все события</string>
+    <string name="text_invitations">Приглашения</string>
+    <string name="err_connot_invite_yourself">Нельзя пригласить себя</string>
+    <string name="msg_invitation_sent">Приглашение отправлено</string>
+    <string name="text_created_activities">Мои события</string>
+    <string name="text_joined_activities">Я записан</string>
 </resources>

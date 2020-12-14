@@ -64,7 +64,7 @@ class InvitationsFragment : Fragment() {
             ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, options)
         usernameAutoCompleteTextView.setAdapter(adapter)
 
-        var targetUserId: Int? = null
+        var targetUserId: Int?
 
         usernameAutoCompleteTextView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -98,7 +98,11 @@ class InvitationsFragment : Fragment() {
             val enteredUsername = usernameAutoCompleteTextView.text.toString()
 
             if (credentialsStore.username.equals(enteredUsername)) {
-                Toast.makeText(context, "You cannot invite yourself", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    getString(R.string.err_connot_invite_yourself),
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 userService.getUserByUsername(enteredUsername).enqueue(object : Callback<User> {
                     override fun onFailure(call: Call<User>, t: Throwable) {
@@ -134,7 +138,7 @@ class InvitationsFragment : Fragment() {
                                     if (response.isSuccessful) {
                                         Toast.makeText(
                                             context,
-                                            "Invitation sent",
+                                            getString(R.string.msg_invitation_sent),
                                             Toast.LENGTH_SHORT
                                         )
                                             .show()

@@ -40,4 +40,10 @@
     <string name="button_leave">Leave</string>
     <string name="text_private_activity">Private</string>
     <string name="text_public_activity">Public</string>
+    <string name="text_all_activities">All activities</string>
+    <string name="text_invitations">Invitations</string>
+    <string name="err_connot_invite_yourself">You cannot invite yourself</string>
+    <string name="msg_invitation_sent">Invitation sent</string>
+    <string name="text_created_activities">Created activities</string>
+    <string name="text_joined_activities">Joined activities</string>
 </resources>
