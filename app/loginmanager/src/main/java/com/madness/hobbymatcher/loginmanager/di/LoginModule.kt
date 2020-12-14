@@ -1,9 +1,9 @@
 package com.madness.hobbymatcher.loginmanager.di
 
 import android.content.Context
-import com.madness.hobbymatcher.networking.interceptors.CredentialsStore
 import com.madness.hobbymatcher.loginmanager.security.LoginManager
 import com.madness.hobbymatcher.networking.AuthService
+import com.madness.hobbymatcher.networking.interceptors.CredentialsStore
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -17,7 +17,7 @@ class LoginModule {
         context: Context,
         authService: AuthService,
         credentialsStore: CredentialsStore
-    ) : LoginManager {
+    ): LoginManager {
         return LoginManager(context, authService, credentialsStore)
     }
 }

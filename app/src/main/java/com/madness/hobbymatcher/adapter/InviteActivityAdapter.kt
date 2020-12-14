@@ -13,8 +13,8 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.madness.hobbymatcher.HobbyMatcherApplication
-import com.madness.hobbymatcher.fragment.InviteActivity
 import com.madness.hobbymatcher.R
+import com.madness.hobbymatcher.fragment.InviteActivity
 import com.madness.hobbymatcher.networking.InvitationService
 import com.madness.hobbymatcher.networking.response.Activity
 import com.madness.hobbymatcher.networking.response.Invitation
@@ -69,7 +69,8 @@ class InviteActivityAdapter
         }
     }
 
-    class InviteViewHolder(val view: View, private val deleteFunction: (InviteActivity) -> Unit) : RecyclerView.ViewHolder(view) {
+    class InviteViewHolder(val view: View, private val deleteFunction: (InviteActivity) -> Unit) :
+        RecyclerView.ViewHolder(view) {
 
         @Inject
         lateinit var invitationService: InvitationService
@@ -77,17 +78,22 @@ class InviteActivityAdapter
         private val frontSdf = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
         private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
-        private val activityNameTextView: TextView = view.findViewById(R.id.inviteActivityNameListItemTextView)
-        private val activityMetaTextView: TextView = view.findViewById(R.id.inviteActivityMetaListItemTextView)
+        private val activityNameTextView: TextView =
+            view.findViewById(R.id.inviteActivityNameListItemTextView)
+        private val activityMetaTextView: TextView =
+            view.findViewById(R.id.inviteActivityMetaListItemTextView)
         private val senderTextView: TextView = view.findViewById(R.id.inviteSenderListItemTextView)
         private val acceptButton: Button = view.findViewById(R.id.inviteListItemAcceptButton)
         private val declineButton: Button = view.findViewById(R.id.inviteListItemDeclineButton)
         private val holder: ConstraintLayout = view.findViewById(R.id.invitesListItemHolder)
 
         fun bind(invite: Invitation) {
-            holder.backgroundTintList = ContextCompat.getColorStateList(view.context, R.color.lightBlueColor)
+            holder.backgroundTintList =
+                ContextCompat.getColorStateList(view.context, R.color.lightBlueColor)
             holder.background = null
-            (HobbyMatcherApplication.APPLICATION as HobbyMatcherApplication).appComponent.inject(this)
+            (HobbyMatcherApplication.APPLICATION as HobbyMatcherApplication).appComponent.inject(
+                this
+            )
             activityNameTextView.text = invite.activity?.name
             var startTime = ""
             if (invite.activity?.startTime != null) {
@@ -98,30 +104,54 @@ class InviteActivityAdapter
             senderTextView.text = "${createTime}: ${invite.senderUsername} invited you"
 
             acceptButton.setOnClickListener {
-                invitationService.acceptInvitation(invite.id!!).enqueue(object: Callback<ResponseBody> {
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        Toast.makeText(itemView.context, "Failed to accept invitation: ${t.message}", Toast.LENGTH_LONG).show()
-                    }
+                invitationService.acceptInvitation(invite.id!!)
+                    .enqueue(object : Callback<ResponseBody> {
+                        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                            Toast.makeText(
+                                itemView.context,
+                                "Failed to accept invitation: ${t.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
 
-                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        Toast.makeText(itemView.context, "Invitation accepted", Toast.LENGTH_LONG).show()
-                    }
+                        override fun onResponse(
+                            call: Call<ResponseBody>,
+                            response: Response<ResponseBody>
+                        ) {
+                            Toast.makeText(
+                                itemView.context,
+                                "Invitation accepted",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
 
-                })
+                    })
                 deleteFunction.invoke(InviteActivity.InviteType(invite))
             }
 
             declineButton.setOnClickListener {
-                invitationService.declineInvitation(invite.id!!).enqueue(object: Callback<ResponseBody> {
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        Toast.makeText(itemView.context, "Failed to decline invitation: ${t.message}", Toast.LENGTH_LONG).show()
-                    }
+                invitationService.declineInvitation(invite.id!!)
+                    .enqueue(object : Callback<ResponseBody> {
+                        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                            Toast.makeText(
+                                itemView.context,
+                                "Failed to decline invitation: ${t.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
 
-                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        Toast.makeText(itemView.context, "Invitation declined", Toast.LENGTH_LONG).show()
-                    }
+                        override fun onResponse(
+                            call: Call<ResponseBody>,
+                            response: Response<ResponseBody>
+                        ) {
+                            Toast.makeText(
+                                itemView.context,
+                                "Invitation declined",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
 
-                })
+                    })
                 deleteFunction.invoke(InviteActivity.InviteType(invite))
             }
             itemView.setOnClickListener {
@@ -138,7 +168,7 @@ class InviteActivityAdapter
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when(activities[position]) {
+        return when (activities[position]) {
             is InviteActivity.InviteType -> ITEM_VIEW_TYPE_INVITE
             is InviteActivity.ActivityType -> ITEM_VIEW_TYPE_ACTIVITY
             is InviteActivity.TitleType -> ITEM_VIEW_TYPE_TITLE
@@ -146,8 +176,11 @@ class InviteActivityAdapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
-        ITEM_VIEW_TYPE_INVITE -> InviteViewHolder(parent.inflate(
-                R.layout.invite_list_item)) { activity: InviteActivity -> deleteActivity(activity) }
+        ITEM_VIEW_TYPE_INVITE -> InviteViewHolder(
+            parent.inflate(
+                R.layout.invite_list_item
+            )
+        ) { activity: InviteActivity -> deleteActivity(activity) }
         ITEM_VIEW_TYPE_ACTIVITY -> ActivityViewHolder(parent.inflate(R.layout.activity_list_item))
         ITEM_VIEW_TYPE_TITLE -> TitleViewHolder(parent.inflate(R.layout.title_list_item))
         else -> ActivityViewHolder(parent.inflate(R.layout.activity_list_item))

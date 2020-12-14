@@ -19,25 +19,25 @@ class NetworkingModule {
 
     @Provides
     @Singleton
-    fun providesActivityService(retrofit: Retrofit) : ActivityService {
+    fun providesActivityService(retrofit: Retrofit): ActivityService {
         return retrofit.create(ActivityService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providesAuthService(@Named("withoutToken") retrofit: Retrofit) : AuthService {
+    fun providesAuthService(@Named("withoutToken") retrofit: Retrofit): AuthService {
         return retrofit.create(AuthService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providesInvitationService(retrofit: Retrofit) : InvitationService {
+    fun providesInvitationService(retrofit: Retrofit): InvitationService {
         return retrofit.create(InvitationService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providesUserService(retrofit: Retrofit) : UserService {
+    fun providesUserService(retrofit: Retrofit): UserService {
         return retrofit.create(UserService::class.java)
     }
 
@@ -57,7 +57,7 @@ class NetworkingModule {
     @Named("withoutToken")
     fun providesAuthRetrofitWithoutToken(
         @Named("withoutToken") okHttpClient: OkHttpClient
-    ) : Retrofit {
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -81,7 +81,7 @@ class NetworkingModule {
     @Provides
     @Singleton
     @Named("withoutToken")
-    fun providesOkHttpClientWithoutToken() : OkHttpClient {
+    fun providesOkHttpClientWithoutToken(): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
@@ -90,13 +90,13 @@ class NetworkingModule {
 
     @Provides
     @Singleton
-    fun providesAuthInterceptor(credentialsStore: CredentialsStore) : AuthInterceptor {
+    fun providesAuthInterceptor(credentialsStore: CredentialsStore): AuthInterceptor {
         return AuthInterceptor(credentialsStore)
     }
 
     @Provides
     @Singleton
-    fun providesCredentialsStore(context: Context) : CredentialsStore {
+    fun providesCredentialsStore(context: Context): CredentialsStore {
         return CredentialsStore(
             context
         )
