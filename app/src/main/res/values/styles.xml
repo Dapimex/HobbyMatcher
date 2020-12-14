@@ -20,6 +20,10 @@
         <item name="materialThemeOverlay">@style/ThemeOverlay.HobbyMatcher.DeclineButton</item>
     </style>
 
+    <style name="ActivityCard" parent="CardView">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
     <style name="ThemeOverlay.HobbyMatcher.AccentButton" parent="">
         <item name="colorPrimary">?attr/colorSecondary</item>
         <item name="colorOnPrimary">?attr/colorOnSecondary</item>

@@ -6,5 +6,6 @@
     <dimen name="text_size_card_activity_name">20sp</dimen>
     <dimen name="elevation_card_view_default">5dp</dimen>
     <dimen name="padding_card_view">15dp</dimen>
-    <dimen name="padding_list_item">10dp</dimen>
+    <dimen name="padding_list_item_horizontal">10dp</dimen>
+    <dimen name="padding_list_item_vertical">5dp</dimen>
 </resources>

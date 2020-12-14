@@ -15,7 +15,8 @@
         android:layout_marginVertical="@dimen/form_vertical_margin"
         android:text="@string/text_my_activities"
         android:textColor="?attr/colorOnBackground"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

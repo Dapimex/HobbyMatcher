@@ -4,9 +4,11 @@
     android:id="@+id/listItemHolder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding_list_item">
+    android:paddingHorizontal="@dimen/padding_list_item_horizontal"
+    android:paddingVertical="@dimen/padding_list_item_vertical">
 
     <androidx.cardview.widget.CardView
+        style="@style/ActivityCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="@dimen/elevation_card_view_default"
