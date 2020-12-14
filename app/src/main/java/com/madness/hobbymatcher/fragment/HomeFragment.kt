@@ -11,7 +11,6 @@ import com.madness.hobbymatcher.HobbyMatcherApplication
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.adapter.InviteActivityAdapter
 import com.madness.hobbymatcher.networking.ActivityService
-import com.madness.hobbymatcher.networking.HobbyMatcherServiceProvider
 import com.madness.hobbymatcher.networking.InvitationService
 import com.madness.hobbymatcher.networking.response.Activities
 import com.madness.hobbymatcher.networking.response.Activity
@@ -24,8 +23,8 @@ import retrofit2.Response
 import javax.inject.Inject
 
 sealed class InviteActivity {
-    data class InviteType(val invite: Invitation): InviteActivity()
-    data class ActivityType(val activity: Activity): InviteActivity()
+    data class InviteType(val invite: Invitation) : InviteActivity()
+    data class ActivityType(val activity: Activity) : InviteActivity()
     data class TitleType(val text: String) : InviteActivity()
 }
 
@@ -57,10 +56,14 @@ class HomeFragment : Fragment() {
     private fun fillActivities() {
 
         (activity_list.adapter as InviteActivityAdapter).clearActivities()
-        invitationService.getMyInvitations().enqueue(object: Callback<Invitations> {
+        invitationService.getMyInvitations().enqueue(object : Callback<Invitations> {
 
             override fun onFailure(call: Call<Invitations>, t: Throwable) {
-                Toast.makeText(context, "Failed to fetch invitations: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Failed to fetch invitations: ${t.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
             override fun onResponse(
@@ -69,34 +72,54 @@ class HomeFragment : Fragment() {
             ) {
                 if (response.body() != null) {
                     if (response.body()!!.invitations.isNotEmpty())
-                        (activity_list.adapter as InviteActivityAdapter).addActivities(listOf(InviteActivity.TitleType("Invitations")))
+                        (activity_list.adapter as InviteActivityAdapter).addActivities(
+                            listOf(
+                                InviteActivity.TitleType(
+                                    getString(
+                                        R.string.text_invitations
+                                    )
+                                )
+                            )
+                        )
                     (activity_list.adapter as InviteActivityAdapter).addActivities(
-                            response.body()!!.invitations
+                        response.body()!!.invitations
                             .map {
                                 InviteActivity.InviteType(
-                                        it
+                                    it
                                 )
                             })
                 }
-                activityService.getVisibleActivities().enqueue(object: Callback<Activities> {
+                activityService.getVisibleActivities().enqueue(object : Callback<Activities> {
                     override fun onFailure(call: Call<Activities>, t: Throwable) {
-                        Toast.makeText(context, "Failed to fetch activities: ${t.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            context,
+                            "Failed to fetch activities: ${t.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
 
                     override fun onResponse(
-                            call: Call<Activities>,
-                            response: Response<Activities>
+                        call: Call<Activities>,
+                        response: Response<Activities>
                     ) {
                         if (response.body() != null) {
                             if (response.body()!!.activities.isNotEmpty())
-                                (activity_list.adapter as InviteActivityAdapter).addActivities(listOf(InviteActivity.TitleType("All activities")))
+                                (activity_list.adapter as InviteActivityAdapter).addActivities(
+                                    listOf(
+                                        InviteActivity.TitleType(
+                                            getString(
+                                                R.string.text_all_activities
+                                            )
+                                        )
+                                    )
+                                )
                             (activity_list.adapter as InviteActivityAdapter).addActivities(
-                                    response.body()!!.activities
-                                            .map {
-                                                InviteActivity.ActivityType(
-                                                        it
-                                                )
-                                            })
+                                response.body()!!.activities
+                                    .map {
+                                        InviteActivity.ActivityType(
+                                            it
+                                        )
+                                    })
                         }
                     }
                 })

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hobby Matcher</string>
+    <string name="app_name" translatable="false">Hobby Matcher</string>
     <string name="home_button">Home</string>
     <string name="add_activity_button">Add Activity</string>
     <string name="profile_button">My Profile</string>
@@ -15,7 +15,7 @@
     <string name="add_activity_duration_label">How much will it last?</string>
     <string name="add_activity_start_time_label">When it starts?</string>
     <string name="add_activity_save_button">Create activity</string>
-    <string name="add_activity_start_time_placeholder">01/01/2020 19:00</string>
+    <string name="add_activity_start_time_placeholder" translatable="false">01/01/2020 19:00</string>
     <string name="add_activity_is_public">This is public activity</string>
     <string name="add_activity_title">Add your activity</string>
     <string name="empty_field">Field cannot be empty</string>
@@ -40,4 +40,10 @@
     <string name="button_leave">Leave</string>
     <string name="text_private_activity">Private</string>
     <string name="text_public_activity">Public</string>
+    <string name="text_all_activities">All activities</string>
+    <string name="text_invitations">Invitations</string>
+    <string name="err_connot_invite_yourself">You cannot invite yourself</string>
+    <string name="msg_invitation_sent">Invitation sent</string>
+    <string name="text_created_activities">Created activities</string>
+    <string name="text_joined_activities">Joined activities</string>
 </resources>
