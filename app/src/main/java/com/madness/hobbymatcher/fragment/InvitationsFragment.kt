@@ -138,6 +138,7 @@ class InvitationsFragment : Fragment() {
                                             Toast.LENGTH_SHORT
                                         )
                                             .show()
+                                        usernameAutoCompleteTextView.text = null
                                     }
                                 }
                             })
