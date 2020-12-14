@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="?attr/colorBackgroundFloating"
+            android:background="?attr/colorPrimaryVariant"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/padding_login_layout">
@@ -33,7 +33,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorBackgroundFloating"
+            android:background="?attr/colorPrimaryVariant"
             android:gravity="bottom"
             android:orientation="vertical"
             android:padding="@dimen/padding_login_layout">
@@ -43,13 +43,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/text_hey_there"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="@dimen/size_welcome_header" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/text_hobbymatcher_desc" />
+                android:text="@string/text_hobbymatcher_desc"
+                android:textColor="?attr/colorOnBackground" />
 
         </LinearLayout>
 
@@ -111,6 +113,7 @@
 
                 <Button
                     android:id="@+id/button_lets_go"
+                    style="@style/AccentButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onLetsGoButtonClick"
