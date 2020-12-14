@@ -27,4 +27,6 @@
     <string name="delete">Delete</string>
     <string name="text_no_internet">No internet connection</string>
     <string name="text_cannot_operate_offline">Unfortunately, this app cannot work without internet connection.</string>
+    <string name="desc_profile_picture">User profile picture</string>
+    <string name="button_log_out">Log Out</string>
 </resources>
