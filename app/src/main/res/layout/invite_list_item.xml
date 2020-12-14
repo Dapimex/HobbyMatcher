@@ -1,64 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/invitesListItemHolder"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/invitesListItemHolder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="8dp"
-    android:paddingVertical="8dp">
+    android:paddingHorizontal="@dimen/padding_list_item_horizontal"
+    android:paddingVertical="@dimen/padding_list_item_vertical">
 
-    <TextView
-        android:id="@+id/inviteSenderListItemTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/form_vertical_margin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+    <androidx.cardview.widget.CardView
+        style="@style/ActivityCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/elevation_card_view_default"
+        app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/inviteActivityNameListItemTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/form_vertical_margin"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/inviteSenderListItemTextView"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start|top"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_card_view">
 
-    <TextView
-        android:id="@+id/inviteActivityMetaListItemTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/form_vertical_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inviteActivityNameListItemTextView"
-        app:layout_constraintBottom_toTopOf="@id/inviteListItemAcceptButton"
-        />
+            <TextView
+                android:id="@+id/inviteActivityNameListItemTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="@dimen/text_size_card_activity_name" />
 
+            <TextView
+                android:id="@+id/inviteSenderListItemTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/inviteListItemAcceptButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/green"
-        android:text="@string/accept"
-        app:layout_constraintTop_toBottomOf="@id/inviteActivityMetaListItemTextView"
-        android:layout_marginTop="@dimen/form_vertical_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/inviteListItemDeclineButton"
-        />
+            <TextView
+                android:id="@+id/inviteActivityMetaListItemTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/inviteListItemDeclineButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/red"
-        android:text="@string/decline"
-        app:layout_constraintTop_toBottomOf="@id/inviteActivityMetaListItemTextView"
-        android:layout_marginTop="@dimen/form_vertical_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/inviteListItemAcceptButton"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/inviteListItemDeclineButton"
+                    style="@style/DeclineButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/decline"
+                    app:icon="@drawable/ic_clear_24px" />
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/inviteListItemAcceptButton"
+                    style="@style/ApproveButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/accept"
+                    app:icon="@drawable/ic_check_24px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.madness.hobbymatcher.HobbyMatcherApplication
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.adapter.ParticipantsAdapter
@@ -80,7 +80,7 @@ class ActivityDetailFragment : Fragment() {
         view.durationTextView.text = activity.duration
         view.typeTextView.text = activity.type
         if (activity.isPublic != null && activity.isPublic!!) {
-            view.isPublicTextView.text = "PUBLIC"
+            view.isPublicTextView.text = getString(R.string.text_public_activity)
             view.isPublicTextView.setTextColor(
                 ContextCompat.getColor(
                     this.requireContext(),
@@ -88,7 +88,7 @@ class ActivityDetailFragment : Fragment() {
                 )
             )
         } else {
-            view.isPublicTextView.text = "PRIVATE"
+            view.isPublicTextView.text = getString(R.string.text_private_activity)
             view.isPublicTextView.setTextColor(
                 ContextCompat.getColor(
                     this.requireContext(),
@@ -102,7 +102,7 @@ class ActivityDetailFragment : Fragment() {
             if (activity.participants!!.find { it.username == credentialsStore.username }!!.role == "OWNER") {
                 view.joinLeaveButton.isEnabled = false
             } else {
-                view.joinLeaveButton.text = "LEAVE"
+                view.joinLeaveButton.text = getString(R.string.button_leave)
                 view.joinLeaveButton.setOnClickListener {
                     activityService.leaveActivity(activityId!!)
                         .enqueue(object : Callback<ResponseBody> {
@@ -125,7 +125,7 @@ class ActivityDetailFragment : Fragment() {
             }
         } else {
             view.inviteButton.isEnabled = false
-            view.joinLeaveButton.text = "JOIN"
+            view.joinLeaveButton.text = getString(R.string.button_join)
             view.joinLeaveButton.setOnClickListener {
                 activityService.joinActivity(activityId!!).enqueue(object : Callback<ResponseBody> {
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
@@ -151,7 +151,8 @@ class ActivityDetailFragment : Fragment() {
         (view.participantsRecyclerView.adapter as ParticipantsAdapter).addUsers(activity.participants!!.filter { it.role != "OWNER" }
             .map { user -> user.username })
 
-        view.participantsRecyclerView.layoutManager = LinearLayoutManager(context)
+        view.participantsRecyclerView.layoutManager =
+            GridLayoutManager(context, 3)
 
 
         view.inviteButton.setOnClickListener {

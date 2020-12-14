@@ -27,6 +27,17 @@
     <string name="delete">Delete</string>
     <string name="text_no_internet">No internet connection</string>
     <string name="text_cannot_operate_offline">Unfortunately, this app cannot work without internet connection.</string>
+    <string name="text_my_activities">My activities</string>
+    <string name="desc_delete_icon">Delete icon</string>
     <string name="desc_profile_picture">User profile picture</string>
     <string name="button_log_out">Log Out</string>
+    <string name="text_invite">Invite</string>
+    <string name="text_to_join">To join</string>
+    <string name="button_send_invitation">Send invitation</string>
+    <string name="text_participants">Participants</string>
+    <string name="button_invite">Invite</string>
+    <string name="button_join">Join</string>
+    <string name="button_leave">Leave</string>
+    <string name="text_private_activity">Private</string>
+    <string name="text_public_activity">Public</string>
 </resources>

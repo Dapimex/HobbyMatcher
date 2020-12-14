@@ -17,9 +17,9 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
 
-    <color name="green">#33AA33</color>
-    <color name="red">#AA3333</color>
-    <color name="lightGreenColor">#75f5aa</color>
-    <color name="lightBlueColor">#bdf9fa</color>
-    <color name="lightRedColor">#f57575</color>
+    <color name="green">#2AF530</color>
+    <color name="red">#F5522A</color>
+    <color name="lightGreenColor">#74F778</color>
+    <color name="lightBlueColor">#74CDF7</color>
+    <color name="lightRedColor">#F78E74</color>
 </resources>

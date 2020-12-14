@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/titleItemHolder"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/titleItemHolder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="12dp"
     android:layout_marginVertical="2dp"
-    >
+    android:paddingVertical="12dp">
 
     <TextView
         android:id="@+id/titleNameItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="My activities"
-        android:layout_marginVertical="@dimen/form_vertical_margin"
         android:layout_marginHorizontal="@dimen/form_horizontal_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginVertical="@dimen/form_vertical_margin"
+        android:text="@string/text_my_activities"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="20sp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

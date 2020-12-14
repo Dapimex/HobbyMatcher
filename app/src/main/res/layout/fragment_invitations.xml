@@ -7,14 +7,13 @@
     android:paddingHorizontal="20dp"
     tools:context=".fragment.InvitationsFragment">
 
-
     <TextView
         android:id="@+id/inviteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="INVITE"
-        android:textColor="@color/primaryColor"
+        android:text="@string/text_invite"
+        android:textColor="?attr/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,9 +23,9 @@
         android:id="@+id/toJoinTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
-        android:text="TO JOIN"
-        android:textColor="@color/primaryColor"
+        android:layout_marginTop="100dp"
+        android:text="@string/text_to_join"
+        android:textColor="?attr/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,9 +33,11 @@
 
     <Button
         android:id="@+id/sendInvitationButton"
+        style="@style/AccentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send invitation"
+        android:text="@string/button_send_invitation"
+        app:icon="@drawable/ic_send_24px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +50,6 @@
         android:layout_marginStart="44dp"
         android:maxEms="8"
         android:singleLine="false"
-        android:text="Activity name"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/toJoinTextView"
         app:layout_constraintStart_toEndOf="@+id/toJoinTextView"

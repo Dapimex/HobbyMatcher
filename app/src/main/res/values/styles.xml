@@ -12,9 +12,31 @@
         <item name="materialThemeOverlay">@style/ThemeOverlay.HobbyMatcher.AccentButton</item>
     </style>
 
+    <style name="ApproveButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.HobbyMatcher.ApproveButton</item>
+    </style>
+
+    <style name="DeclineButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.HobbyMatcher.DeclineButton</item>
+    </style>
+
+    <style name="ActivityCard" parent="CardView">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
     <style name="ThemeOverlay.HobbyMatcher.AccentButton" parent="">
-        <item name="colorPrimary">@color/secondaryColor</item>
-        <item name="colorOnPrimary">@color/secondaryTextColor</item>
+        <item name="colorPrimary">?attr/colorSecondary</item>
+        <item name="colorOnPrimary">?attr/colorOnSecondary</item>
+    </style>
+
+    <style name="ThemeOverlay.HobbyMatcher.ApproveButton" parent="">
+        <item name="colorPrimary">@color/green</item>
+        <item name="backgroundTint">@color/green</item>
+    </style>
+
+    <style name="ThemeOverlay.HobbyMatcher.DeclineButton" parent="">
+        <item name="colorPrimary">@color/red</item>
+        <item name="backgroundTint">@color/red</item>
     </style>
 
 </resources>
