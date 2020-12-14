@@ -1,11 +1,11 @@
 package com.madness.hobbymatcher.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.madness.hobbymatcher.HobbyMatcherApplication
 import com.madness.hobbymatcher.R
@@ -27,8 +27,10 @@ class AddActivityFragment : Fragment() {
     private val frontSdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
     private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         (HobbyMatcherApplication.APPLICATION as HobbyMatcherApplication).appComponent.inject(this)
         return inflater.inflate(R.layout.fragment_add_activity, container, false)
     }
@@ -67,7 +69,7 @@ class AddActivityFragment : Fragment() {
     }
 
     private fun sendDataToApi() {
-        val type = when(addActivityTypeRadioGroup.checkedRadioButtonId) {
+        val type = when (addActivityTypeRadioGroup.checkedRadioButtonId) {
             R.id.addActivityMovieRadioButton -> "MOVIE"
             R.id.addActivityTabletopRadioButton -> "TABLETOP"
             R.id.addActivityWalkRadioButton -> "WALKING"
@@ -86,17 +88,27 @@ class AddActivityFragment : Fragment() {
             location = addActivityPlaceEditText.text.toString(),
             isPublic = addActivityPublicCheckBox.isChecked
         )
-        activityService.createActivity(activity).enqueue(object: Callback<Activity> {
+        activityService.createActivity(activity).enqueue(object : Callback<Activity> {
             override fun onFailure(call: Call<Activity>, t: Throwable) {
-                Toast.makeText(context, "Failed to upload activity: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Failed to upload activity: ${t.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
             override fun onResponse(call: Call<Activity>, response: Response<Activity>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(context, "Successfully created activity", Toast.LENGTH_SHORT).show()
-                    view?.findNavController()?.navigate(R.id.action_menu_item_add_activity_to_menu_item_profile)
+                    Toast.makeText(context, "Successfully created activity", Toast.LENGTH_SHORT)
+                        .show()
+                    view?.findNavController()
+                        ?.navigate(R.id.action_menu_item_add_activity_to_menu_item_profile)
                 } else {
-                    Toast.makeText(context, "Failed to upload activity: $response", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        context,
+                        "Failed to upload activity: $response",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         })

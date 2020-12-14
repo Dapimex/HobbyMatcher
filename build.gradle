@@ -2,7 +2,7 @@
 buildscript {
     ext {
         // Language version
-        kotlin_version = '1.4.20'
+        kotlin_version = '1.4.21'
 
         // AndroidX components versions
         dagger_version = '2.30.1'
