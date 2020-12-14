@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_hi_there">Привет!</string>
+    <string name="hint_username">Имя пользователя</string>
+    <string name="hint_password">Пароль</string>
+    <string name="button_log_in">Войти</string>
+    <string name="err_edit_empty">Не должно быть пустым</string>
+    <string name="text_sign_up">Зарегистрироваться</string>
+    <string name="hint_repeat_password">Пароль ещё раз</string>
+    <string name="button_register">Зарегистрироваться</string>
+    <string name="err_passwords_not_same">Пароли должны совпадать</string>
+    <string name="err_passwords_dont_match">Пароли не совпадают</string>
+    <string name="msg_invalid_cred">Неправильные имя пользователя или пароль</string>
+    <string name="msg_username_exists">Имя пользователя уже занято</string>
+    <string name="msg_no_internet">Нет соединения</string>
+    <string name="text_hey_there">Приветики!</string>
+    <string name="text_hobbymatcher_desc">В HobbyMatcher ты можешь найти интересные события вокруг и провести время в отличной компании</string>
+    <string name="button_lets_go">Поехали</string>
+    <string name="button_go_back">Назад</string>
+    <string name="desc_people_comm">Изображение разговаривающих людей</string>
+</resources>
