@@ -28,7 +28,7 @@ class ActivityDetailFragment : Fragment() {
 
     var activityId: Int? = null
 
-    private val frontSdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+    private val frontSdf = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
     private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
     @Inject

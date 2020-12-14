@@ -14,6 +14,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.madness.hobbymatcher.R
 import com.madness.hobbymatcher.networking.response.Activity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ActivitiesAdapter(
     private val deleteFunction: ((Int) -> Unit)
@@ -35,6 +37,9 @@ class ActivitiesAdapter(
 
     class ActivityViewHolder(val view: View, private val deleteFunction: (Int) -> Unit) :
         RecyclerView.ViewHolder(view) {
+        private val frontSdf = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
+        private val backSdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+
         private val nameTextView: TextView = view.findViewById(R.id.activityNameListItemTextView)
         private val metaTextView: TextView =
             view.findViewById(R.id.activityMetaListItemTextView)
@@ -56,8 +61,12 @@ class ActivitiesAdapter(
                 deleteActivityButton.isClickable = false
             }
             nameTextView.text = activity.name
-            metaTextView.text = "${activity.startTime} | ${activity.location}"
 
+            var startTime = ""
+            if (activity.startTime != null) {
+                startTime = frontSdf.format(backSdf.parse(activity.startTime!!)!!)
+            }
+            metaTextView.text = "$startTime | ${activity.location}"
 
             view.setOnClickListener {
                 view.findNavController().navigate(
